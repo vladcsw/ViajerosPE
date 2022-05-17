@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="login_message">Bienvenido a tu nueva aventura</string>
+    <string name="login_message2">¿No te encuentras registrado?</string>
+    <string name="login_button_loginGoogle">Iniciar sesión con Google</string>
+    <string name="login_button_loginEmail">Iniciar sesión con correo</string>
+    <string name="login_button_register">Registrarme</string>
+    <string name="register_name">Registrarme</string>
+    <string name="register_email">Correo</string>
+    <string name="register_names">Nombres</string>
+    <string name="register_lastNames">Apellidos</string>
+    <string name="register_phone">Teléfono</string>
+    <string name="register_addAccount">Crear cuenta</string>
+    <string name="register_message1">Al crear tu cuenta aceptas nuestros</string>
+    <string name="register_message2">Términos y condiciones</string>
+    <string name="title_activity_main_menu">MainActivityMenu</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+</resources>
