@@ -4,14 +4,20 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Programming/viajerosPE/ViajerosPE/app/src/main/res/drawable/ic_icon_search_2.xml" value="0.1935" />
+        <entry key="..\:/Programming/viajerosPE/ViajerosPE/app/src/main/res/drawable/ic_users.xml" value="0.287" />
         <entry key="..\:/Programming/viajerosPE/ViajerosPE/app/src/main/res/layout/activity_login.xml" value="0.358695652173913" />
+        <entry key="..\:/Programming/viajerosPE/ViajerosPE/app/src/main/res/layout/activity_login_email.xml" value="0.22" />
         <entry key="..\:/Programming/viajerosPE/ViajerosPE/app/src/main/res/layout/activity_main.xml" value="0.358695652173913" />
         <entry key="..\:/Programming/viajerosPE/ViajerosPE/app/src/main/res/layout/activity_main_menu.xml" value="0.358695652173913" />
         <entry key="..\:/Programming/viajerosPE/ViajerosPE/app/src/main/res/layout/activity_register.xml" value="0.358695652173913" />
         <entry key="..\:/Programming/viajerosPE/ViajerosPE/app/src/main/res/layout/fragment_dashboard.xml" value="0.18541666666666667" />
+        <entry key="..\:/Programming/viajerosPE/ViajerosPE/app/src/main/res/layout/fragment_home.xml" value="0.265625" />
+        <entry key="..\:/Programming/viajerosPE/ViajerosPE/app/src/main/res/layout/fragment_home_select.xml" value="0.265625" />
+        <entry key="..\:/Programming/viajerosPE/ViajerosPE/app/src/main/res/layout/fragment_home_select2.xml" value="0.26666666666666666" />
         <entry key="..\:/Programming/viajerosPE/ViajerosPE/app/src/main/res/layout/fragment_notifications.xml" value="0.18541666666666667" />
         <entry key="..\:/Programming/viajerosPE/ViajerosPE/app/src/main/res/layout/fragment_profile.xml" value="0.18541666666666667" />
         <entry key="..\:/Programming/viajerosPE/ViajerosPE/app/src/main/res/menu/bottom_nav_menu.xml" value="0.18541666666666667" />
+        <entry key="..\:/Programming/viajerosPE/ViajerosPE/app/src/main/res/menu/menu01.xml" value="0.26458333333333334" />
       </map>
     </option>
   </component>

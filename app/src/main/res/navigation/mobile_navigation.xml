@@ -29,6 +29,17 @@
         android:label="@string/title_profile"
         tools:layout="@layout/fragment_profile" />
 
+    <fragment
+        android:id="@+id/navigation_homeSelect"
+        android:name="com.viajeros.pe.ui.home.HomeSelectFragment"
+        android:label="@string/title_homeSelect"
+        tools:layout="@layout/fragment_home_select" />
+
+    <fragment
+        android:id="@+id/navigation_homeSelect2"
+        android:name="com.viajeros.pe.ui.home.HomeSelect2Fragment"
+        android:label="@string/title_homeSelect2"
+        tools:layout="@layout/fragment_home_select2" />
 
 
 </navigation>

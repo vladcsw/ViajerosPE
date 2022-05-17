@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.home.HomeSelect2Fragment"
+    android:background="@drawable/background1"
+    android:backgroundTint="#85FFFFFF"
+    android:backgroundTintMode="src_over">
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/fragmentHomeSelect2_buttonToDo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/fragmentHomeSelect_buttonToDo"
+        android:layout_gravity="center|bottom"
+        android:layout_marginBottom="70dp"
+        android:background="#FFCB77"
+        />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fragmentHomeSelect2_fabNext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:src="@drawable/ic_right_arrow"
+        android:layout_gravity="end|bottom"
+        android:layout_marginBottom="?attr/actionBarSize"
+        android:layout_marginEnd="5dp"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fragmentHomeSelect2_fabBefore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:src="@drawable/ic_left_arrow"
+        android:layout_gravity="start|bottom"
+        android:layout_marginStart="5dp"
+        android:layout_marginBottom="?attr/actionBarSize"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="5dp">
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/googlemaps_example"
+            android:layout_gravity="center"/>
+    </LinearLayout>
+
+</FrameLayout>
