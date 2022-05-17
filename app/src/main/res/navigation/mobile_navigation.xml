@@ -8,18 +8,27 @@
     <fragment
         android:id="@+id/navigation_home"
         android:name="com.viajeros.pe.ui.home.HomeFragment"
-        android:label="@string/title_home"
+        android:label="@string/title_trips"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="com.viajeros.pe.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
+        android:name="com.viajeros.pe.ui.search.SearchFragment"
+        android:label="@string/title_search"
         tools:layout="@layout/fragment_dashboard" />
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="com.viajeros.pe.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
+        android:name="com.viajeros.pe.ui.addPlace.AddPlaceFragment"
+        android:label="@string/title_newPlace"
         tools:layout="@layout/fragment_notifications" />
+
+    <fragment
+        android:id="@+id/navigation_profile"
+        android:name="com.viajeros.pe.ui.profile.ProfileFragment"
+        android:label="@string/title_profile"
+        tools:layout="@layout/fragment_profile" />
+
+
+
 </navigation>

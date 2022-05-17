@@ -1,16 +1,16 @@
-package com.viajeros.pe.ui.notifications;
+package com.viajeros.pe.ui.addPlace;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class NotificationsViewModel extends ViewModel {
+public class AddPlaceViewModel extends ViewModel {
 
     private final MutableLiveData<String> mText;
 
-    public NotificationsViewModel() {
+    public AddPlaceViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is notifications fragment");
+        mText.setValue("This is add place fragment");
     }
 
     public LiveData<String> getText() {

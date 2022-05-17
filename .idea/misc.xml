@@ -3,10 +3,15 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Programming/viajerosPE/ViajerosPE/app/src/main/res/drawable/ic_icon_search_2.xml" value="0.1935" />
         <entry key="..\:/Programming/viajerosPE/ViajerosPE/app/src/main/res/layout/activity_login.xml" value="0.358695652173913" />
         <entry key="..\:/Programming/viajerosPE/ViajerosPE/app/src/main/res/layout/activity_main.xml" value="0.358695652173913" />
         <entry key="..\:/Programming/viajerosPE/ViajerosPE/app/src/main/res/layout/activity_main_menu.xml" value="0.358695652173913" />
         <entry key="..\:/Programming/viajerosPE/ViajerosPE/app/src/main/res/layout/activity_register.xml" value="0.358695652173913" />
+        <entry key="..\:/Programming/viajerosPE/ViajerosPE/app/src/main/res/layout/fragment_dashboard.xml" value="0.18541666666666667" />
+        <entry key="..\:/Programming/viajerosPE/ViajerosPE/app/src/main/res/layout/fragment_notifications.xml" value="0.18541666666666667" />
+        <entry key="..\:/Programming/viajerosPE/ViajerosPE/app/src/main/res/layout/fragment_profile.xml" value="0.18541666666666667" />
+        <entry key="..\:/Programming/viajerosPE/ViajerosPE/app/src/main/res/menu/bottom_nav_menu.xml" value="0.18541666666666667" />
       </map>
     </option>
   </component>
