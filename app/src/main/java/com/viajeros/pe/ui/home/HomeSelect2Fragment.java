@@ -16,7 +16,7 @@ import com.viajeros.pe.R;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link HomeSelect2Fragment#newInstance} factory method to
+ * Use the {@link HomeSelect2Fragment\#newInstance} factory method to
  * create an instance of this fragment.
  */
 public class HomeSelect2Fragment extends Fragment {
