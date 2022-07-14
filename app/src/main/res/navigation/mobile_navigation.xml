@@ -40,6 +40,11 @@
         android:name="com.viajeros.pe.ui.home.HomeSelect2Fragment"
         android:label="@string/title_homeSelect2"
         tools:layout="@layout/fragment_home_select2" />
+    <fragment
+        android:id="@+id/navigation_map"
+        android:name="com.viajeros.pe.ui.home.MapsFragment"
+        android:label="@string/title_map"
+        tools:layout="@layout/fragment_maps" />
 
 
 </navigation>

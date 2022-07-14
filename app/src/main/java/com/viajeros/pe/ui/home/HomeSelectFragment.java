@@ -55,7 +55,7 @@ public class HomeSelectFragment extends Fragment {
         fbaNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Navigation.findNavController(view).navigate(R.id.navigation_homeSelect2);
+                Navigation.findNavController(view).navigate(R.id.navigation_map);
             }
         });
 
