@@ -45,6 +45,7 @@
     <string name="fragmentAddPlace_gps">Ubicación GPS</string>
     <string name="fragmentAddPlace_description">Descripción</string>
     <string name="title_homeSelect2">Ubicaciones</string>
+    <string name="title_map">Destinos Marcados</string>
 
 
 </resources>
