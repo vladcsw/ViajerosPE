@@ -3,6 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/AndroidWorkspace/ViajerosPE/app/src/main/res/layout/activity_main.xml" value="0.3625" />
+        <entry key="..\:/AndroidWorkspace/ViajerosPE/app/src/main/res/layout/activity_main_menu.xml" value="0.3625" />
+        <entry key="..\:/AndroidWorkspace/ViajerosPE/app/src/main/res/layout/activity_register.xml" value="0.3625" />
         <entry key="..\:/Programming/viajerosPE/ViajerosPE/app/src/main/res/drawable/ic_icon_search_2.xml" value="0.1935" />
         <entry key="..\:/Programming/viajerosPE/ViajerosPE/app/src/main/res/drawable/ic_users.xml" value="0.287" />
         <entry key="..\:/Programming/viajerosPE/ViajerosPE/app/src/main/res/layout/activity_login.xml" value="0.358695652173913" />
