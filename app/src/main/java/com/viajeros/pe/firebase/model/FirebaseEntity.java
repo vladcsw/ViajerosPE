@@ -5,12 +5,11 @@ import com.google.firebase.firestore.Exclude;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class FirebaseEntity {
+public abstract class FirebaseEntity {
     private String documentId;
 
     @Exclude

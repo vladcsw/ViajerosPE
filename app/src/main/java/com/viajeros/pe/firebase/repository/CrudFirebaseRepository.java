@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface CrudFirebaseRepository <E extends FirebaseEntity, I> {
 
-    MultipleDocumentReferenceLiveData<E, ? extends Query> findAll();
+    MultipleDocumentReferenceLiveData<E, Query> findAll();
     DocumentReferenceFirebaseLiveData<E> findById(I identifier);
     void save(E entity);
     void saveAll(List<E> entities);
