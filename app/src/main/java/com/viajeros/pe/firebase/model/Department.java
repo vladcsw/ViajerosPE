@@ -1,6 +1,10 @@
 package com.viajeros.pe.firebase.model;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @EqualsAndHashCode(callSuper = true)
 @Data

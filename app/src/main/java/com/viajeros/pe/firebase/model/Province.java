@@ -3,7 +3,13 @@ package com.viajeros.pe.firebase.model;
 import com.google.firebase.firestore.Exclude;
 import com.viajeros.pe.firebase.livedata.DocumentReferenceFirebaseLiveData;
 
-import lombok.*;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Data
 @ToString(callSuper = true)
@@ -11,17 +17,12 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Province extends FirebaseEntity{
-    private int province_id;
+    @Getter(AccessLevel.PUBLIC)
     private String province;
     @Exclude
     private DocumentReferenceFirebaseLiveData<Department> departmentLiveData;
     @Exclude
     private Department department;
-
-    public Province(int id, String province){
-        this.province_id = id;
-        this.province = province;
-    }
 
     @Exclude
     public DocumentReferenceFirebaseLiveData<Department> getDepartmentLiveData(){

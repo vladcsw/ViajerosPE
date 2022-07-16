@@ -105,6 +105,21 @@
             android:background="#2D2C2C"
             android:inputType="textPersonName"
             android:textColor="#FFFFFF"/>
+        <TextView
+            android:id="@+id/passwordTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/register_password"
+            android:textColor="#FFFFFF"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+        <EditText
+            android:id="@+id/register_editText_password"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:background="#2D2C2C"
+            android:inputType="textPassword"
+            android:textColor="#FFFFFF"/>
         <Space
             android:layout_width="1dp"
             android:layout_height="35dp" />

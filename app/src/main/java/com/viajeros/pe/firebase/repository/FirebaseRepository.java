@@ -3,11 +3,17 @@ package com.viajeros.pe.firebase.repository;
 import android.util.Log;
 
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.*;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.WriteBatch;
 import com.viajeros.pe.firebase.livedata.DocumentReferenceFirebaseLiveData;
 import com.viajeros.pe.firebase.livedata.MultipleDocumentReferenceLiveData;
 import com.viajeros.pe.firebase.model.FirebaseEntity;
 import com.viajeros.pe.firebase.utils.GenericMapper;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
@@ -17,14 +23,15 @@ public class FirebaseRepository <E extends FirebaseEntity> implements CrudFireba
     protected final CollectionReference collectionReference;
     protected final Class<E> entityClass;
 
-    FirebaseRepository(Class<E> entityClass){
+    public FirebaseRepository(@NotNull Class<E> entityClass){
+        super();
         Log.e(TAG, "FIREBASE_REPOSITORY");
         this.entityClass = entityClass;
         this.collectionReference = FirebaseFirestore.getInstance().collection(this.entityClass.getSimpleName());
     }
 
     @Override
-    public MultipleDocumentReferenceLiveData<E, ? extends Query> findAll() {
+    public MultipleDocumentReferenceLiveData<E, Query> findAll() {
         return new MultipleDocumentReferenceLiveData<>(this.collectionReference, this.entityClass);
     }
 

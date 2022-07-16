@@ -1,7 +1,10 @@
 package com.viajeros.pe.firebase.service;
 
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.*;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.EmailAuthProvider;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.Objects;
 
@@ -25,7 +28,7 @@ public class AuthService {
         return firebaseAuth.createUserWithEmailAndPassword(email, password);
     }
 
-    public Task<Void> firebaseReauthenticationWithCredential(String email, String password) {
+    public static Task<Void> firebaseAuthenticationWithCredential(String email, String password) {
         return Objects.requireNonNull(firebaseAuth.getCurrentUser()).reauthenticate(
                 EmailAuthProvider.getCredential(email, password)
         );

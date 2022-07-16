@@ -1,8 +1,6 @@
 package com.viajeros.pe.firebase.repository;
 
-import com.google.firebase.auth.FirebaseUser;
 import com.viajeros.pe.firebase.model.Traveller;
-import com.viajeros.pe.firebase.service.AuthService;
 
 public class TravellerRepository extends FirebaseRepository<Traveller>{
 

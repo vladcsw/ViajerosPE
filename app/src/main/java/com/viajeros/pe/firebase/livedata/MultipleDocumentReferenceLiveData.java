@@ -1,16 +1,22 @@
 package com.viajeros.pe.firebase.livedata;
 
 import android.util.Log;
+
 import androidx.annotation.Nullable;
 import androidx.lifecycle.LiveData;
-import com.google.firebase.firestore.*;
-import com.viajeros.pe.firebase.model.FirebaseEntity;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.ListenerRegistration;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QuerySnapshot;
+import com.viajeros.pe.firebase.model.FirebaseEntity;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
