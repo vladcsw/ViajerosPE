@@ -10,6 +10,7 @@
     <string name="register_names">Nombres</string>
     <string name="register_lastNames">Apellidos</string>
     <string name="register_phone">Teléfono</string>
+    <string name="register_password">Contraseña</string>
     <string name="register_addAccount">Crear cuenta</string>
     <string name="register_message1">Al crear tu cuenta aceptas nuestros</string>
     <string name="register_message2">Términos y condiciones</string>
@@ -45,6 +46,15 @@
     <string name="fragmentAddPlace_gps">Ubicación GPS</string>
     <string name="fragmentAddPlace_description">Descripción</string>
     <string name="title_homeSelect2">Ubicaciones</string>
-
+    <!--Profile-->
+    <string name="profile_title"> PERFIL PERSONAL </string>
+    <string name="name_profile">Nombre </string>
+    <string name="lastname_profile">Apellidos </string>
+    <string name="phone_profile">Celular</string>
+    <string name="email_profile">Correo electrónico</string>
+    <string name="pass1_profile">Contraseña actual</string>
+    <string name="pass2_profile">Contraseña nueva</string>
+    <string name="save_button_profile">Guardar Cambios</string>
+    <string name="title_password_profile">Cambiar Contraseña</string>
 
 </resources>

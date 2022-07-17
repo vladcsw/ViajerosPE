@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "26073702362",
+    "project_id": "viajerospe-3c108",
+    "storage_bucket": "viajerospe-3c108.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:26073702362:android:2993f5d2bd07ca48d4eae3",
+        "android_client_info": {
+          "package_name": "com.viajeros.pe"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "26073702362-diaan308nsle1ufsr31ch9ouu3hjisi0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD6QINqoQm77os-w5vZXkh_WhnmadiFDGo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "26073702362-diaan308nsle1ufsr31ch9ouu3hjisi0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
