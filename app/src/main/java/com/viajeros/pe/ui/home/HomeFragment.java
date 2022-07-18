@@ -2,7 +2,7 @@ package com.viajeros.pe.ui.home;
 
 import android.app.SearchManager;
 import android.content.Context;
-import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,18 +12,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SearchView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
-import com.viajeros.pe.LoginEmailActivity;
-import com.viajeros.pe.MainActivityMenu;
 import com.viajeros.pe.R;
 import com.viajeros.pe.databinding.FragmentHomeBinding;
 
@@ -34,19 +30,16 @@ public class HomeFragment extends Fragment {
     private SearchView.OnQueryTextListener queryTextListener;
     private CardView cardView02;
 
+    @RequiresApi(api = Build.VERSION_CODES.N) // Only work if exist foreach
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
-        /*
-        HomeViewModel homeViewModel =
-                new ViewModelProvider(this).get(HomeViewModel.class);
-
-        binding = FragmentHomeBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
-        */
-
-//        final TextView textView = binding.textHome;
-  //      homeViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+        HomeViewModel homeViewModel = new HomeViewModel();
+        homeViewModel.getAllLiveData().observe(getViewLifecycleOwner(), places ->{
+            places.forEach(touristPlace -> {
+                    Log.e("TAG", touristPlace.toString());
+            });
+        });
 
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         cardView02 = view.findViewById(R.id.fragment_tripsCard);
