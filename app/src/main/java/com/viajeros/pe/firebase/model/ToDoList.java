@@ -1,5 +1,7 @@
 package com.viajeros.pe.firebase.model;
 
+import java.util.List;
+
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,4 +22,6 @@ public class ToDoList extends FirebaseEntity {
     private String binnacleId;
     @Getter(AccessLevel.PUBLIC)
     private Boolean state;
+    @Getter(AccessLevel.PUBLIC)
+    private List<ToDoListItem> itemList;
 }
