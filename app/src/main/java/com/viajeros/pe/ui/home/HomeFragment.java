@@ -35,7 +35,7 @@ import java.util.List;
 
 public class HomeFragment extends Fragment {
 
-    private FragmentHomeBinding binding;
+    private com.viajeros.pe.databinding.FragmentHomeBinding binding;
     private SearchView searchView = null;
     private SearchView.OnQueryTextListener queryTextListener;
     private CardView cardView02;
@@ -78,12 +78,13 @@ public class HomeFragment extends Fragment {
             public void onClick(View view) {
 
                 // Example
-                homeSelectViewModel.saveWithIdGenerated(binnacle, binnacleIdGenerated); // Save binnacle in FireStore
+                /*homeSelectViewModel.saveWithIdGenerated(binnacle, binnacleIdGenerated); // Save binnacle in FireStore
                 toDoViewModel.save(toDoList); // Save ToDoList in FireStore
                 // Example
 
-                Toast.makeText(view.getContext(), "Mi nuevo viaje", Toast.LENGTH_LONG).show();
+                Toast.makeText(view.getContext(), "Mi nuevo viaje", Toast.LENGTH_LONG).show();*/
                 Navigation.findNavController(view).navigate(R.id.navigation_homeSelect);
+                
             }
         });
 

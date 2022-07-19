@@ -46,10 +46,9 @@ public class MapsFragment extends Fragment {
 
             LatLng EPIS = new LatLng(-16.406481373889534, -71.52456067325008);
             HomeViewModel homeViewModel = new HomeViewModel();
-            List<TouristPlace> list = new ArrayList<>();
+
             locationArrayList = new ArrayList<>();
             homeViewModel.getAllLiveData().observe(getViewLifecycleOwner(), places ->{
-                list.addAll(places);
                 places.forEach(touristPlace -> {
                     String xValue = touristPlace.getCoordinates().substring(0,touristPlace.getCoordinates().indexOf(','));
                     String yValue = touristPlace.getCoordinates().substring(touristPlace.getCoordinates().indexOf(',')+1, touristPlace.getCoordinates().length());
@@ -60,7 +59,7 @@ public class MapsFragment extends Fragment {
                         locationArrayList.add(new LatLng(Hlat, Hlong));
                         googleMap.addMarker(new MarkerOptions().position(new LatLng(Hlat, Hlong)).title(touristPlace.getDescription()));
                     }
-                    Log.e("TAG", touristPlace.toString()+ "X: "+xValue+" - Y: "+yValue +"* "+locationArrayList.get(locationArrayList.size()-1).latitude );
+
                 });
             });
             for (int i = 0; i < locationArrayList.size(); i++) {
@@ -91,7 +90,4 @@ public class MapsFragment extends Fragment {
         }
     }
 
-    public void getCoordinates(){
-
-    }
 }

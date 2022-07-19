@@ -28,9 +28,9 @@ public class LoginEmailActivity extends AppCompatActivity {
 
             String email = ((EditText) findViewById(R.id.loginEmail_editTextEmail)).getText().toString();
             String password = ((EditText) findViewById(R.id.loginEmail_editTextPassword)).getText().toString();
-            Intent i = new Intent(LoginEmailActivity.this, MainActivityMenu.class);
-            startActivity(i);
-            /*if (email.isEmpty() || password.isEmpty()) {
+            //Intent i = new Intent(LoginEmailActivity.this, MainActivityMenu.class);
+            //startActivity(i)
+            if (email.isEmpty() || password.isEmpty()) {
                 Toast.makeText(mContext, "Correo o contraseña vacios.", Toast.LENGTH_SHORT).show();
             } else {
                 Task<AuthResult> auth = new AuthService().firebaseSinInWithEmail(email, password);
@@ -44,7 +44,7 @@ public class LoginEmailActivity extends AppCompatActivity {
                         Toast.makeText(mContext, "Correo o contraseña incorrecto.", Toast.LENGTH_SHORT).show();
                     }
                 });
-            }*/
+            }
 
         });
 
