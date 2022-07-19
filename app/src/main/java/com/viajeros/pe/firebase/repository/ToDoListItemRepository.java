@@ -1,7 +1,5 @@
 package com.viajeros.pe.firebase.repository;
 
-import com.google.firebase.firestore.Query;
-import com.viajeros.pe.firebase.livedata.MultipleDocumentReferenceLiveData;
 import com.viajeros.pe.firebase.model.ToDoListItem;
 
 public class ToDoListItemRepository extends FirebaseRepository<ToDoListItem> {
@@ -13,10 +11,6 @@ public class ToDoListItemRepository extends FirebaseRepository<ToDoListItem> {
             instance = new ToDoListItemRepository();
         }
         return instance;
-    }
-
-    public MultipleDocumentReferenceLiveData<ToDoListItem, Query> finByToDoList(String ToDoListId) {
-        return new MultipleDocumentReferenceLiveData<>(collectionReference.whereEqualTo("todolistId", ToDoListId), entityClass);
     }
 
     private ToDoListItemRepository() {

@@ -4,7 +4,7 @@ import com.google.firebase.firestore.Query;
 import com.viajeros.pe.firebase.livedata.MultipleDocumentReferenceLiveData;
 import com.viajeros.pe.firebase.model.ToDoList;
 
-public class ToDoListRepository extends FirebaseRepository<ToDoList>{
+public class ToDoListRepository extends FirebaseRepository<ToDoList> {
 
     private static ToDoListRepository instance;
 
@@ -17,6 +17,10 @@ public class ToDoListRepository extends FirebaseRepository<ToDoList>{
 
     public MultipleDocumentReferenceLiveData<ToDoList, Query> finByUser(String uid) {
         return new MultipleDocumentReferenceLiveData<>(collectionReference.whereEqualTo("userId", uid), entityClass);
+    }
+
+    public MultipleDocumentReferenceLiveData<ToDoList, Query> findByBinnacle(String bid) {
+        return new MultipleDocumentReferenceLiveData<>(collectionReference.whereEqualTo("binnacleId", bid), entityClass);
     }
 
     private ToDoListRepository() {

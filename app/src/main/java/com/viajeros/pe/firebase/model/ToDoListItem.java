@@ -17,7 +17,5 @@ public class ToDoListItem extends FirebaseEntity{
     @Getter(AccessLevel.PUBLIC)
     private Boolean item_state;
     @Getter(AccessLevel.PUBLIC)
-    private String todolistId;
-    @Getter(AccessLevel.PUBLIC)
     private String statement;
 }
