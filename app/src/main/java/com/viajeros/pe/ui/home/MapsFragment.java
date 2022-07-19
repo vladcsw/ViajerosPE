@@ -5,6 +5,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,10 +19,16 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.viajeros.pe.R;
+import com.viajeros.pe.firebase.model.TouristPlace;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class MapsFragment extends Fragment {
 
     Button buttonTodo;
     FloatingActionButton fbaBack, fbaNext;
+    private ArrayList<LatLng> locationArrayList;
 
     private OnMapReadyCallback callback = new OnMapReadyCallback() {
 
@@ -38,9 +45,30 @@ public class MapsFragment extends Fragment {
         public void onMapReady(GoogleMap googleMap) {
 
             LatLng EPIS = new LatLng(-16.406481373889534, -71.52456067325008);
-            googleMap.addMarker(new MarkerOptions().position(EPIS).title("Marker in EPIS"));
-            //googleMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
+            HomeViewModel homeViewModel = new HomeViewModel();
+            List<TouristPlace> list = new ArrayList<>();
+            locationArrayList = new ArrayList<>();
+            homeViewModel.getAllLiveData().observe(getViewLifecycleOwner(), places ->{
+                list.addAll(places);
+                places.forEach(touristPlace -> {
+                    String xValue = touristPlace.getCoordinates().substring(0,touristPlace.getCoordinates().indexOf(','));
+                    String yValue = touristPlace.getCoordinates().substring(touristPlace.getCoordinates().indexOf(',')+1, touristPlace.getCoordinates().length());
+                    if ( !xValue.trim().equals("") && !yValue.trim().equals("") )
+                    {
+                        double Hlat = Double.parseDouble(xValue.trim());
+                        double Hlong= Double.parseDouble(yValue.trim());
+                        locationArrayList.add(new LatLng(Hlat, Hlong));
+                        googleMap.addMarker(new MarkerOptions().position(new LatLng(Hlat, Hlong)).title(touristPlace.getDescription()));
+                    }
+                    Log.e("TAG", touristPlace.toString()+ "X: "+xValue+" - Y: "+yValue +"* "+locationArrayList.get(locationArrayList.size()-1).latitude );
+                });
+            });
+            for (int i = 0; i < locationArrayList.size(); i++) {
+                googleMap.addMarker(new MarkerOptions().position(locationArrayList.get(i)).title(locationArrayList.get(0).latitude+""));
+            }
+
             googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(EPIS,13));
+
         }
     };
 
@@ -55,10 +83,15 @@ public class MapsFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
         SupportMapFragment mapFragment =
                 (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
         if (mapFragment != null) {
             mapFragment.getMapAsync(callback);
         }
+    }
+
+    public void getCoordinates(){
+
     }
 }
