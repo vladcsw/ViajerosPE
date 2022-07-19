@@ -1,6 +1,6 @@
 package com.viajeros.pe.firebase.model;
 
-import androidx.lifecycle.LiveData;
+import java.util.List;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -19,5 +19,5 @@ public class Binnacle extends FirebaseEntity{
     @Getter(AccessLevel.PUBLIC)
     private String userId;
     @Getter(AccessLevel.PUBLIC)
-    private LiveData<TouristPlace> places;
+    private List<TouristPlace> places;
 }

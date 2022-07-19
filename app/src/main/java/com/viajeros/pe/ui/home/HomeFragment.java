@@ -18,10 +18,20 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.LiveData;
 import androidx.navigation.Navigation;
 
 import com.viajeros.pe.R;
 import com.viajeros.pe.databinding.FragmentHomeBinding;
+import com.viajeros.pe.firebase.model.Binnacle;
+import com.viajeros.pe.firebase.model.ToDoList;
+import com.viajeros.pe.firebase.model.ToDoListItem;
+import com.viajeros.pe.firebase.model.TouristPlace;
+import com.viajeros.pe.firebase.service.AuthService;
+import com.viajeros.pe.firebase.utils.Utils;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class HomeFragment extends Fragment {
 
@@ -34,18 +44,44 @@ public class HomeFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
-        HomeViewModel homeViewModel = new HomeViewModel();
-        homeViewModel.getAllLiveData().observe(getViewLifecycleOwner(), places ->{
-            places.forEach(touristPlace -> {
-                    Log.e("TAG", touristPlace.toString());
-            });
-        });
+        // Example
+        List<TouristPlace> savePlace = new ArrayList<>(); // List of TouristPlaces
+
+        HomeViewModel homeViewModel = new HomeViewModel(); // Calls view model Home
+        // Get all tourist places saved id FireStore and fill the list of TouristPlaces
+        homeViewModel.getAllLiveData().observe(getViewLifecycleOwner(), savePlace::addAll);
+
+        String uid = AuthService.firebaseGetCurrentUser().getUid(); // Get id of current user logged
+
+        Utils utils = new Utils(); // Own class utils created
+        String binnacleIdGenerated = utils.getDocumentIdGenerated("Binnacle");
+        Log.e("Generated Id", binnacleIdGenerated); // Print generated id
+
+        Binnacle binnacle = new Binnacle(uid, savePlace); // Object Binnacle to save
+        binnacle.setDocumentId(binnacleIdGenerated);
+        HomeSelectViewModel homeSelectViewModel = new HomeSelectViewModel(); // Calls view model Binnacle
+
+        ToDoViewModel toDoViewModel = new ToDoViewModel(); // Calls view model TodoList
+        // ArrayList of ToDoListItem
+        List<ToDoListItem> itemList = new ArrayList<>();
+        itemList.add(new ToDoListItem(true, "Ir a caminar"));
+        itemList.add(new ToDoListItem(true, "Ir a comer"));
+        itemList.add(new ToDoListItem(true, "Ir a correr"));
+        ToDoList toDoList = new ToDoList(uid, binnacleIdGenerated, true, itemList); // ToDoList object
+
+        //Example
 
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         cardView02 = view.findViewById(R.id.fragment_tripsCard);
         cardView02.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                // Example
+                homeSelectViewModel.saveWithIdGenerated(binnacle, binnacleIdGenerated); // Save binnacle in FireStore
+                toDoViewModel.save(toDoList); // Save ToDoList in FireStore
+                // Example
+
                 Toast.makeText(view.getContext(), "Mi nuevo viaje", Toast.LENGTH_LONG).show();
                 Navigation.findNavController(view).navigate(R.id.navigation_homeSelect);
             }
@@ -59,6 +95,7 @@ public class HomeFragment extends Fragment {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
     }
+
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         inflater.inflate(R.menu.menu01, menu);
@@ -78,6 +115,7 @@ public class HomeFragment extends Fragment {
 
                     return true;
                 }
+
                 @Override
                 public boolean onQueryTextSubmit(String query) {
                     Log.i("onQueryTextSubmit", query);
