@@ -2,6 +2,7 @@ package com.viajeros.pe.viewmodel.user;
 
 import androidx.lifecycle.ViewModel;
 
+import com.viajeros.pe.firebase.livedata.DocumentReferenceFirebaseLiveData;
 import com.viajeros.pe.firebase.model.User;
 import com.viajeros.pe.firebase.repository.TravellerRepository;
 import com.viajeros.pe.firebase.repository.UserRepository;
@@ -21,5 +22,8 @@ public class UserViewModel extends ViewModel {
         travellerRepository.saveTraveller(AuthService.firebaseGetCurrentUser().getUid());
     }
 
+    public DocumentReferenceFirebaseLiveData<User> getUser(String uid){
+        return userRepository.findById(uid);
+    }
 
 }

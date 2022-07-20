@@ -25,7 +25,7 @@ public class LoginEmailActivity extends AppCompatActivity {
         Context mContext = this.getApplicationContext();
 
         buttonLogin.setOnClickListener(view -> {
-
+            AuthService.firebaseSingOut();
             String email = ((EditText) findViewById(R.id.loginEmail_editTextEmail)).getText().toString();
             String password = ((EditText) findViewById(R.id.loginEmail_editTextPassword)).getText().toString();
 
