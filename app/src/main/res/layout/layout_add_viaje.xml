@@ -1,0 +1,19 @@
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/fragment_tripsCard"
+    android:layout_width="match_parent"
+    android:layout_height="150dp"
+    android:layout_margin="10dp"
+    android:padding="30dp"
+    app:cardBackgroundColor="#CB9E75"
+    app:cardCornerRadius="20dp">
+
+    <ImageButton
+        android:id="@+id/fragment_tripsCard_imageButton"
+        android:layout_width="40dp"
+        android:layout_height="50dp"
+        android:src="@drawable/ic_baseline_add_circle_outline_24"
+        android:background="#CB9E75"
+        android:padding="5dp" />
+
+</androidx.cardview.widget.CardView>
