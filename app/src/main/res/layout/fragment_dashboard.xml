@@ -7,6 +7,28 @@
     tools:context=".ui.search.SearchFragment"
     android:background="@drawable/background1"
     android:backgroundTint="#80FFFFFF"
+    android:backgroundTintMode="src_over">
+
+
+    <com.google.ar.sceneform.ArSceneView
+        android:id="@+id/arView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </com.google.ar.sceneform.ArSceneView>
+
+</RelativeLayout>
+
+
+<!--
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.search.SearchFragment"
+    android:background="@drawable/background1"
+    android:backgroundTint="#80FFFFFF"
     android:backgroundTintMode="src_over"    >
 
     <fragment
@@ -16,3 +38,4 @@
         android:layout_height="match_parent"/>
 
 </RelativeLayout>
+-->
