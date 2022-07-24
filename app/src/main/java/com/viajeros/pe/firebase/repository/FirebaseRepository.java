@@ -42,11 +42,13 @@ public class FirebaseRepository <E extends FirebaseEntity> implements CrudFireba
 
     @Override
     public void save(E entity) {
+        Log.e("save", "save");
         this.collectionReference.document().set(entity);
     }
 
     @Override
     public void saveAll(List<E> entities) {
+        Log.e("save2", "save");
         WriteBatch batch = FirebaseFirestore.getInstance().batch();
         for (E entity : entities) {
             DocumentReference documentReference = this.collectionReference.document();

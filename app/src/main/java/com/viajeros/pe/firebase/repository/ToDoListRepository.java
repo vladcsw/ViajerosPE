@@ -23,6 +23,7 @@ public class ToDoListRepository extends FirebaseRepository<ToDoList> {
         return new MultipleDocumentReferenceLiveData<>(collectionReference.whereEqualTo("binnacleId", bid), entityClass);
     }
 
+
     private ToDoListRepository() {
         super(ToDoList.class);
     }

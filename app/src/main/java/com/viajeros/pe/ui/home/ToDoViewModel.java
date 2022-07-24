@@ -1,5 +1,7 @@
 package com.viajeros.pe.ui.home;
 
+import android.util.Log;
+
 import androidx.lifecycle.ViewModel;
 
 import com.google.firebase.firestore.Query;
@@ -51,9 +53,19 @@ public class ToDoViewModel extends ViewModel {
         return allLiveData;
     }
 
+    //Retorna itemList
+    public MultipleDocumentReferenceLiveData<ToDoList, Query> itemListBinnacle(String binnacleId){
+        if(allLiveData == null) {
+            allLiveData = toDoListRepository.findByBinnacle(binnacleId);
+        }
+        return allLiveData;
+    }
+
     // Save a document in FireStore
     public void save(ToDoList toDoList){
-        toDoListRepository.save(toDoList);
+
+        Log.e("usuariosX", "test");
+        //toDoListRepository.save(toDoList);
     }
 
     // Delete a document in FireStore

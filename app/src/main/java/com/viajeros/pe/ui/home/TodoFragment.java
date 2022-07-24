@@ -19,13 +19,14 @@ import com.viajeros.pe.firebase.service.AuthService;
 
 import java.util.ArrayList;
 
-public class HomeSelectFragment extends Fragment implements AdaptadorPlaces.ItemClickListener {
+public class TodoFragment extends Fragment implements AdaptadorTodo.ItemClickListener {
 
     Button buttonTodo;
     FloatingActionButton fbaBack, fbaNext;
-    private HomeViewModel homeViewModel;
-    private ArrayList<String> placesNames;
-    private AdaptadorPlaces adapter;
+    ToDoViewModel todoViewModel;
+    private ArrayList<String> todoNames;
+    private ArrayList<Boolean> checkTodoNames;
+    private AdaptadorTodo adapter;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,53 +38,54 @@ public class HomeSelectFragment extends Fragment implements AdaptadorPlaces.Item
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-        placesNames = new ArrayList<>();
-      /*  placesNames.add("asdf");
-        placesNames.add("asdasdff");
-        placesNames.add("asdaasdsdff");*/
+        todoNames = new ArrayList<>();
+        checkTodoNames = new ArrayList<>();
+      /*  todoNames.add("asdf");
+        todoNames.add("asdasdff");
+        todoNames.add("asdaasdsdff");*/
         //fragmentHomeSelect_buttonToDo
-        View view = inflater.inflate(R.layout.fragment_home_select, container, false);
+        View view = inflater.inflate(R.layout.fragment_todo, container, false);
         // set up the RecyclerView
         RecyclerView recyclerView = view.findViewById(R.id.rv_places);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
 
 
-        homeViewModel = new HomeViewModel();
+        todoViewModel = new ToDoViewModel();
 
         String uid = AuthService.firebaseGetCurrentUser().getUid();
         /*OBTENER LOS DESTINOS DEL VIAJE SELECCIONADO*/
         //EJEMPLO DE VIAJE o BITACORA (BINNACLE)
 
+        todoNames.clear();
+        checkTodoNames.clear();
+        /*todoViewModel.findByBinnacle("dX0OtRyfQzEBrebrDY1v").observe(this.getViewLifecycleOwner(), data->{
+            data.forEach(touristPlace -> {
 
-        homeViewModel.getLiveDataBinnacle("1Z9FrVsQNM5EV3Bo1I9r").observe(this.getViewLifecycleOwner(), data->{
-            data.getPlaces().forEach(touristPlace -> {
-                Log.e("TAG", "LUGARES DE UNA BITACORA: "+touristPlace.getName());
-                placesNames.add(touristPlace.getName());
+                for (int i = 0; i<touristPlace.getItemList().size(); i++){
+                    Log.e("TAG", "TODO LIST: "+touristPlace.getItemList().get(i).getStatement());
+                    todoNames.add(touristPlace.getItemList().get(i).getStatement());
+                    checkTodoNames.add(touristPlace.getItemList().get(i).getItem_state());
+
+                }
+
+                //todoNames.add(touristPlace.getItemList());
             });
-            adapter = new AdaptadorPlaces(view.getContext(), placesNames);
+            adapter = new AdaptadorTodo(view.getContext(), todoNames, checkTodoNames);
             adapter.setClickListener(this::onItemClick);
             recyclerView.setAdapter(adapter);
-        });
+        });*/
 
 
-
-
-
-
-
-
-
-        buttonTodo = view.findViewById(R.id.fragmentHomeSelect_buttonToDo);
+       // buttonTodo = view.findViewById(R.id.fragmentHomeSelect_buttonToDo);
         fbaBack = view.findViewById(R.id.fragmentHomeSelect_fabBefore);
         fbaNext = view.findViewById(R.id.fragmentHomeSelect_fabNext);
 
-        buttonTodo.setOnClickListener(new View.OnClickListener() {
+/*        buttonTodo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Toast.makeText(view.getContext(), "Mi lista por hacer", Toast.LENGTH_LONG).show();
-                Navigation.findNavController(view).navigate(R.id.navigation_todo);
+                Toast.makeText(view.getContext(), "Mi lista por hacer", Toast.LENGTH_LONG).show();
             }
-        });
+        });*/
 
         fbaBack.setOnClickListener(new View.OnClickListener() {
             @Override
