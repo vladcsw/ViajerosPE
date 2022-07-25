@@ -58,7 +58,7 @@ public class TodoFragment extends Fragment implements AdaptadorTodo.ItemClickLis
 
         todoNames.clear();
         checkTodoNames.clear();
-        todoViewModel.findByBinnacle("fddasassx").observe(this.getViewLifecycleOwner(), data->{
+        todoViewModel.findByBinnacle("kXq9kQitaJBbP73fawwr").observe(this.getViewLifecycleOwner(), data->{
             data.forEach(touristPlace -> {
 
                 for (int i = 0; i<touristPlace.getItemList().size(); i++){
