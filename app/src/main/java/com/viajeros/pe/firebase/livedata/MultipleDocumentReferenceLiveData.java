@@ -34,6 +34,7 @@ public class MultipleDocumentReferenceLiveData<T extends FirebaseEntity, L exten
     public MultipleDocumentReferenceLiveData(L multipleDocuments, Class<T> entityClass) {
         this.multipleDocuments = multipleDocuments;
         this.entityClass = entityClass;
+
     }
 
     @Override

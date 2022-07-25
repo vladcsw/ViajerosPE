@@ -57,8 +57,59 @@ public class AdaptadorTodo extends RecyclerView.Adapter<AdaptadorTodo.AdaptadorT
                 ToDoViewModel todoViewModel = new ToDoViewModel();
                 String id=mData.get(position);
                 Log.e("positioncheck",id);
-                //You can call detail fragment here
 
+                //You can call detail fragment here
+                if (mCheck.get(position) == true){
+
+                    todoViewModel.findByBinnacle("fddasassx").observe((LifecycleOwner) view.getContext(), data->{
+                        data.forEach(touristPlace -> {
+                            List<ToDoListItem> itemList = new ArrayList<>();
+                            itemList.add(new ToDoListItem(false, "Ir a caminar"));
+                            Log.e("HEREHERE",touristPlace.getDocumentId());
+                            /*    String uid = touristPlace.getUserId();
+                            List<ToDoListItem> itemList = new ArrayList<>();
+                            itemList.add(new ToDoListItem(true, "Ir a caminar"));
+                            itemList.add(new ToDoListItem(true, "Ir a comer"));
+                            itemList.add(new ToDoListItem(true, "Ir a correr"));
+                            ToDoList toDoList = new ToDoList(uid, "dX0OtRyfQzEBrebrDY1v", true, itemList); // ToDoList object*/
+
+                            //itemList.add(new ToDoListItem(true, touristPlace.getItemList()));
+                            Log.e("xd",todoViewModel.getY());
+                            //Log.e("xd2",touristPlace.getItemList().get(position).getStatement()+"xd");
+                            ToDoList g = new ToDoList("DSH3CzFvIMYFDvMLHGvBEPdbM7d2","fddasassx",true,itemList);
+                            todoViewModel.setH(g,touristPlace.getDocumentId());
+                            todoViewModel.update(g);
+                            //touristPlace.getItemList().get(position).setItem_state(false);
+
+                //ToDoList toDoList = new ToDoList(uid, "dX0OtRyfQzEBrebrDY1v", false, touristPlace.getItemList()); // ToDoList object
+                // todoViewModel.save(toDoList);
+                //todoNames.add(touristPlace.getItemList());
+                        });
+
+                    });
+                }else{
+                    todoViewModel.findByBinnacle("fddasassx").observe((LifecycleOwner) view.getContext(), data->{
+                        data.forEach(touristPlace -> {
+                            List<ToDoListItem> itemList = new ArrayList<>();
+                            itemList.add(new ToDoListItem(true, "Ir a caminar"));
+                            Log.e("HEREHERE2",touristPlace.getDocumentId());
+                            /*    String uid = touristPlace.getUserId();
+                            List<ToDoListItem> itemList = new ArrayList<>();
+                            itemList.add(new ToDoListItem(true, "Ir a caminar"));
+                            itemList.add(new ToDoListItem(true, "Ir a comer"));
+                            itemList.add(new ToDoListItem(true, "Ir a correr"));
+                            ToDoList toDoList = new ToDoList(uid, "dX0OtRyfQzEBrebrDY1v", true, itemList); // ToDoList object*/
+
+                            //itemList.add(new ToDoListItem(true, touristPlace.getItemList()));
+                            Log.e("xd",todoViewModel.getY());
+                            Log.e("xd2",touristPlace.getItemList().get(position).getStatement()+"xd");
+                            ToDoList g = new ToDoList("DSH3CzFvIMYFDvMLHGvBEPdbM7d2","fddasassx",true,itemList);
+                            todoViewModel.setH(g,touristPlace.getDocumentId());
+                            todoViewModel.update(g);
+                        });
+
+                    });
+                }
 
 
             }

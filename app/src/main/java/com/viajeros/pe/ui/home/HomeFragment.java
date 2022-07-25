@@ -69,9 +69,9 @@ public class HomeFragment extends Fragment implements AdaptadorViajes.ItemClickL
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
 
 
-        //homeViewModel = new HomeViewModel(); // Calls view model Home
+        homeViewModel = new HomeViewModel(); // Calls view model Home
         // Get all tourist places saved id FireStore and fill the list of TouristPlaces
-        /*homeViewModel.getAllLiveData().observe(getViewLifecycleOwner(), savePlace::addAll);
+        homeViewModel.getAllLiveData().observe(getViewLifecycleOwner(), savePlace::addAll);
 
         String uid = AuthService.firebaseGetCurrentUser().getUid(); // Get id of current user logged
         Log.e("Usuario", "ID: " + uid);
@@ -195,8 +195,17 @@ public class HomeFragment extends Fragment implements AdaptadorViajes.ItemClickL
         if(position > 0){
             Toast.makeText(view.getContext(), "You clicked " + adapter.getItem(position) +adapter.getCode().get(position) +  " on row number " + position, Toast.LENGTH_SHORT).show();
         }else{
+            /*String uid = AuthService.firebaseGetCurrentUser().getUid(); // Get id of current user logged
+            ToDoViewModel toDoViewModel = new ToDoViewModel(); // Calls view model TodoList
+            List<ToDoListItem> itemList = new ArrayList<>();
+            itemList.add(new ToDoListItem(true, "Ir a caminar"));
+            itemList.add(new ToDoListItem(true, "Ir a comer"));
+            itemList.add(new ToDoListItem(true, "Ir a correr"));
+            ToDoList toDoList = new ToDoList(uid, "fddasass", true, itemList); /// ToDoList object
+            toDoViewModel.save(toDoList); // Save ToDoList in FireStore*/
             Toast.makeText(view.getContext(), "Mi nuevo viaje", Toast.LENGTH_LONG).show();
             Navigation.findNavController(view).navigate(R.id.navigation_homeSelect);
+
         }
     }
 

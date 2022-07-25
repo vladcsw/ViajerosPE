@@ -65,7 +65,8 @@ public class ToDoViewModel extends ViewModel {
     public void save(ToDoList toDoList){
 
         Log.e("usuariosX", "test");
-        //toDoListRepository.save(toDoList);
+        toDoListRepository.save(toDoList);
+
     }
 
     // Delete a document in FireStore
@@ -76,5 +77,13 @@ public class ToDoViewModel extends ViewModel {
     // Update a document in FireStore
     public void update(ToDoList toDoList){
         toDoListRepository.update(toDoList);
+    }
+
+    public String getY(){
+        return toDoListRepository.getIdX();
+    }
+
+    public void setH(ToDoList toDoList, String h){
+        toDoListRepository.setIdX(toDoList,h);
     }
 }
