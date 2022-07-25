@@ -39,6 +39,8 @@ public class HomeFragment extends Fragment {
     private SearchView searchView = null;
     private SearchView.OnQueryTextListener queryTextListener;
     private CardView cardView02;
+    private ToDoList toDoListsExample = new ToDoList(); // Store temporally todolist
+    private ArrayList<ToDoListItem> items = new ArrayList<>(); // Array store temporally todolist item array
 
     @RequiresApi(api = Build.VERSION_CODES.N) // Only work if exist foreach
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -54,14 +56,27 @@ public class HomeFragment extends Fragment {
         String uid = AuthService.firebaseGetCurrentUser().getUid(); // Get id of current user logged
 
         Utils utils = new Utils(); // Own class utils created
-        String binnacleIdGenerated = utils.getDocumentIdGenerated("Binnacle");
+        String binnacleIdGenerated = utils.getDocumentIdGenerated("Binnacle"); // Generate a id for Binnacle
         Log.e("Generated Id", binnacleIdGenerated); // Print generated id
 
         Binnacle binnacle = new Binnacle(uid, savePlace); // Object Binnacle to save
-        binnacle.setDocumentId(binnacleIdGenerated);
+        binnacle.setDocumentId(binnacleIdGenerated); // Set the id generate in object binnacle created
+
         HomeSelectViewModel homeSelectViewModel = new HomeSelectViewModel(); // Calls view model Binnacle
 
         ToDoViewModel toDoViewModel = new ToDoViewModel(); // Calls view model TodoList
+
+        // Get a todolist created by a binnacle (for the example we are using an id stored in firebase)
+        toDoViewModel.findByBinnacle("Z5im6DGNLKNruSoiQTot").observe(getViewLifecycleOwner(), toDoLists -> {
+            toDoListsExample = toDoLists.get(0); // store temporally the object todolist
+            items = (ArrayList<ToDoListItem>) toDoLists.get(0).getItemList(); // we get the array itemList
+            for (int i = 0; i < items.size(); i++) {
+                Log.e("Item "+i,items.get(i).toString()); // Print each object
+                items.get(i).setStatement("POSITION: "+i); // Update the value statement of the item
+                items.set(i, items.get(i)); // Here we can change the item in position i
+            }
+        });
+
         // ArrayList of ToDoListItem
         List<ToDoListItem> itemList = new ArrayList<>();
         itemList.add(new ToDoListItem(true, "Ir a caminar"));
@@ -79,7 +94,10 @@ public class HomeFragment extends Fragment {
 
                 // Example
                 homeSelectViewModel.saveWithIdGenerated(binnacle, binnacleIdGenerated); // Save binnacle in FireStore
-                toDoViewModel.save(toDoList); // Save ToDoList in FireStore
+                toDoViewModel.save(toDoList); // Save a new ToDoList object in FireStore
+
+                toDoListsExample.setItemList(items); // Update the itemList in the object todolist
+                toDoViewModel.update(toDoListsExample); // Update the element in firebase
                 // Example
 
                 Toast.makeText(view.getContext(), "Mi nuevo viaje", Toast.LENGTH_LONG).show();
