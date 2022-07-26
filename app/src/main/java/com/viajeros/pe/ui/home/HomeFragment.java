@@ -18,7 +18,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.LiveData;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -31,19 +30,19 @@ import com.viajeros.pe.firebase.model.ToDoListItem;
 import com.viajeros.pe.firebase.model.TouristPlace;
 import com.viajeros.pe.firebase.service.AuthService;
 import com.viajeros.pe.firebase.utils.Utils;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class HomeFragment extends Fragment implements AdaptadorViajes.ItemClickListener {
 
-    private com.viajeros.pe.databinding.FragmentHomeBinding binding;
+    private FragmentHomeBinding binding;
     private SearchView searchView = null;
     private SearchView.OnQueryTextListener queryTextListener;
     private CardView cardView02;
     private ArrayList<String> binnacleNames;
     private ArrayList<String> binnacleDocuments = new ArrayList<>();
-
 
     private HomeViewModel homeViewModel;
     private HomeSelectViewModel homeSelectViewModel;
@@ -53,7 +52,6 @@ public class HomeFragment extends Fragment implements AdaptadorViajes.ItemClickL
     AdaptadorViajes adapter;
     String uid;
 
-
     @RequiresApi(api = Build.VERSION_CODES.N) // Only work if exist foreach
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -62,34 +60,6 @@ public class HomeFragment extends Fragment implements AdaptadorViajes.ItemClickL
         binnacleNames = new ArrayList<>();
         binnacleNames.add("");
 
-//HEAD============================================================
-        // Example
-        List<TouristPlace> savePlace = new ArrayList<>(); // List of TouristPlaces
-
-        HomeViewModel homeViewModel = new HomeViewModel(); // Calls view model Home
-        // Get all tourist places saved id FireStore and fill the list of TouristPlaces
-        homeViewModel.getAllLiveData().observe(getViewLifecycleOwner(), savePlace::addAll);
-
-        String uid = AuthService.firebaseGetCurrentUser().getUid(); // Get id of current user logged
-
-        Utils utils = new Utils(); // Own class utils created
-        String binnacleIdGenerated = utils.getDocumentIdGenerated("Binnacle");
-        Log.e("Generated Id", binnacleIdGenerated); // Print generated id
-
-        Binnacle binnacle = new Binnacle(uid, savePlace); // Object Binnacle to save
-        binnacle.setDocumentId(binnacleIdGenerated);
-        HomeSelectViewModel homeSelectViewModel = new HomeSelectViewModel(); // Calls view model Binnacle
-
-        ToDoViewModel toDoViewModel = new ToDoViewModel(); // Calls view model TodoList
-        // ArrayList of ToDoListItem
-        List<ToDoListItem> itemList = new ArrayList<>();
-        itemList.add(new ToDoListItem(true, "Ir a caminar"));
-        itemList.add(new ToDoListItem(true, "Ir a comer"));
-        itemList.add(new ToDoListItem(true, "Ir a correr"));
-        ToDoList toDoList = new ToDoList(uid, binnacleIdGenerated, true, itemList); // ToDoList object
-
-        //Example
-//============================================================
         /*animalNames.add("Horse");
         animalNames.add("Cow");
         animalNames.add("Camel");
@@ -98,7 +68,6 @@ public class HomeFragment extends Fragment implements AdaptadorViajes.ItemClickL
 
         //
         // Example
-
 
 
         View view = inflater.inflate(R.layout.fragment_home, container, false);
@@ -119,7 +88,7 @@ public class HomeFragment extends Fragment implements AdaptadorViajes.ItemClickL
             });
         });
 
-         // Own class utils created
+        Utils utils = new Utils(); // Own class utils created
         binnacleIdGenerated = utils.getDocumentIdGenerated("Binnacle");
         Log.e("Generated Id", binnacleIdGenerated); // Print generated id
 
@@ -144,11 +113,11 @@ public class HomeFragment extends Fragment implements AdaptadorViajes.ItemClickL
             h.set(0);
             data.forEach(binaclet ->{
                 Log.e("usuarios", "test");
-                    h.getAndIncrement();
-                    Log.e("testBina2",binaclet.getUserId());
-                    binnacleNames.add("Viaje"+h);
-                    binnacleDocuments.add(binaclet.getDocumentId());
-                    a.add(binaclet.getDocumentId());
+                h.getAndIncrement();
+                Log.e("testBina2",binaclet.getUserId());
+                binnacleNames.add("Viaje"+h);
+                binnacleDocuments.add(binaclet.getDocumentId());
+                a.add(binaclet.getDocumentId());
 
             });
             adapter = new AdaptadorViajes(view.getContext(), binnacleNames);
@@ -171,31 +140,18 @@ public class HomeFragment extends Fragment implements AdaptadorViajes.ItemClickL
 
 
 
-       cardView02 = view.findViewById(R.id.fragment_tripsCard);
+       /*cardView02 = view.findViewById(R.id.fragment_tripsCard);
         cardView02.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 // Example
-//<<<<<<< HEAD
-                /*homeSelectViewModel.saveWithIdGenerated(binnacle, binnacleIdGenerated); // Save binnacle in FireStore
+                homeSelectViewModel.saveWithIdGenerated(binnacle, binnacleIdGenerated); // Save binnacle in FireStore
                 toDoViewModel.save(toDoList); // Save ToDoList in FireStore
                 // Example
-
-                Toast.makeText(view.getContext(), "Mi nuevo viaje", Toast.LENGTH_LONG).show();*/
-//=======
-//
-                /*homeSelectViewModel.saveWithIdGenerated(binnacle, binnacleIdGenerated); // Save binnacle in FireStore
-                toDoViewModel.save(toDoList); // Save ToDoList in FireStore
-                // Example
-
                 Toast.makeText(view.getContext(), "Mi nuevo viaje", Toast.LENGTH_LONG).show();
->>>>>>>>>>>>>>>checks
-                */
                 Navigation.findNavController(view).navigate(R.id.navigation_homeSelect);
-                
             }
-        });
+        });*/
 
 
         return view;

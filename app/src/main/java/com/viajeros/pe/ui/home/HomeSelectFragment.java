@@ -23,13 +23,11 @@ public class HomeSelectFragment extends Fragment implements AdaptadorPlaces.Item
 
     Button buttonTodo;
     FloatingActionButton fbaBack, fbaNext;
-
     private HomeViewModel homeViewModel;
     private ArrayList<String> placesNames;
     private AdaptadorPlaces adapter;
     private String uid;
     private String bid;
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,35 +38,12 @@ public class HomeSelectFragment extends Fragment implements AdaptadorPlaces.Item
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-
-
-        homeViewModel = new HomeViewModel();
-
         //Log.e("bundle",getArguments().getString("amount")) ;
         placesNames = new ArrayList<>();
       /*  placesNames.add("asdf");
         placesNames.add("asdasdff");
         placesNames.add("asdaasdsdff");*/
-
         //fragmentHomeSelect_buttonToDo
-        /*OBTENER EL ID DEL USUARIO*/
-        String uid = AuthService.firebaseGetCurrentUser().getUid();
-        /*OBTENER LOS DESTINOS DEL VIAJE SELECCIONADO*/
-        //EJEMPLO DE VIAJE o BITACORA (BINNACLE)
-        homeViewModel.getLiveDataBinnacle("1Z9FrVsQNM5EV3Bo1I9r").observe(this.getViewLifecycleOwner(), data->{
-            data.getPlaces().forEach(touristPlace -> {
-                Log.e("TAG", "LUGARES DE UNA BITACORA: "+touristPlace.getName());
-            });
-        });
-
-        //EJEMPLO PARA OBTENER ACTIVIDADES DE UN VIAJE PARA EL ToDoList
-        homeViewModel.getLiveDataToDo("KBc7yuoFw0RLlHi22MEQ").observe(this.getViewLifecycleOwner(), data->{
-            data.getItemList().forEach(items ->{
-                Log.e("TAG", "Items del ToDoList de una bitacora: "+items.getStatement());
-            });
-        });
-
-
         View view = inflater.inflate(R.layout.fragment_home_select, container, false);
         // set up the RecyclerView
         RecyclerView recyclerView = view.findViewById(R.id.rv_places);
@@ -132,7 +107,6 @@ public class HomeSelectFragment extends Fragment implements AdaptadorPlaces.Item
 
     }
 
-
     @Override
     public void onItemClick(View view, int position) {
         Toast.makeText(view.getContext(), "You clicked " + adapter.getItem(position)  +  " on row number " + position, Toast.LENGTH_SHORT).show();
@@ -140,4 +114,3 @@ public class HomeSelectFragment extends Fragment implements AdaptadorPlaces.Item
     }
 
 }
-
