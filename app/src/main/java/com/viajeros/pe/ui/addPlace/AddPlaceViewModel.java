@@ -1,19 +1,20 @@
 package com.viajeros.pe.ui.addPlace;
 
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
+
+import com.viajeros.pe.firebase.model.TouristPlace;
+import com.viajeros.pe.firebase.repository.TouristPlaceRepository;
 
 public class AddPlaceViewModel extends ViewModel {
 
-    private final MutableLiveData<String> mText;
+    private final TouristPlaceRepository touristPlaceRepository;
 
-    public AddPlaceViewModel() {
-        mText = new MutableLiveData<>();
-        mText.setValue("This is add place fragment");
+    public AddPlaceViewModel(){
+        this.touristPlaceRepository = TouristPlaceRepository.getInstance();
     }
 
-    public LiveData<String> getText() {
-        return mText;
+    public void save(TouristPlace touristPlace){
+        touristPlaceRepository.save(touristPlace);
     }
+
 }

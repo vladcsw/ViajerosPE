@@ -29,78 +29,83 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:padding="25dp">
+        android:padding="15dp">
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/fragment_tripsCard"
+         <!--<androidx.cardview.widget.CardView
+             android:id="@+id/fragment_tripsCard"
+             android:layout_width="match_parent"
+             android:layout_height="150dp"
+             android:layout_gravity="center"
+             android:padding="30dp"
+             app:cardBackgroundColor="#CB9E75"
+             app:cardCornerRadius="20dp">
+
+             <ImageButton
+                 android:id="@+id/fragment_tripsCard_imageButton"
+                 android:layout_width="40dp"
+                 android:layout_height="50dp"
+                 android:background="#CB9E75"
+                 android:padding="5dp"
+                 android:src="@drawable/ic_baseline_add_circle_outline_24" />
+         </androidx.cardview.widget.CardView>-->
+        <!--
+                 <Space
+                     android:layout_width="wrap_content"
+                     android:layout_height="20dp">
+                 </Space>
+
+                 <androidx.cardview.widget.CardView
+                     android:id="@+id/fragment_tripsCard2"
+                     android:layout_width="match_parent"
+                     android:layout_height="150dp"
+                     android:layout_gravity="center"
+                     app:cardCornerRadius="20dp"
+                     app:cardBackgroundColor="#CB9E75"
+                     android:padding="30dp">
+
+                     <LinearLayout
+                         android:layout_width="match_parent"
+                         android:layout_height="match_parent"
+                         android:background="@drawable/background1"
+                         android:backgroundTint="#39FFFFFF"
+                         android:backgroundTintMode="src_over"
+                         android:orientation="vertical"
+                         android:padding="10dp">
+
+                         <TextView
+                             android:id="@+id/fragment_tripsCard2_title"
+                             android:layout_width="348dp"
+                             android:layout_height="wrap_content"
+                             android:text="Mi viaje a Arequipa"
+                             android:textColor="@android:color/white"
+                             android:textStyle="bold" />
+
+                         <LinearLayout
+                             android:layout_width="match_parent"
+                             android:layout_height="match_parent"
+                             android:gravity="bottom"
+                             android:orientation="vertical">
+
+                             <TextView
+                                 android:id="@+id/fragment_tripsCard2_place"
+                                 android:layout_width="match_parent"
+                                 android:layout_height="wrap_content"
+                                 android:text="Mi viaje a Arequipa"
+                                 android:textAlignment="viewEnd"
+                                 android:textColor="#FFCB77"
+                                 android:textSize="25sp"
+                                 android:textStyle="bold" />
+                         </LinearLayout>
+
+                     </LinearLayout>
+
+                 </androidx.cardview.widget.CardView>-->
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:paddingBottom="50dp"
+            android:id="@+id/rv_viajes"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:layout_gravity="center"
-            app:cardCornerRadius="20dp"
-            app:cardBackgroundColor="#CB9E75"
-            android:padding="30dp">
-
-            <ImageButton
-                android:id="@+id/fragment_tripsCard_imageButton"
-                android:layout_width="40dp"
-                android:layout_height="50dp"
-                android:src="@drawable/ic_baseline_add_circle_outline_24"
-                android:background="#CB9E75"
-                android:padding="5dp" />
-        </androidx.cardview.widget.CardView>
-
-        <Space
-            android:layout_width="wrap_content"
-            android:layout_height="20dp">
-        </Space>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/fragment_tripsCard2"
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:layout_gravity="center"
-            app:cardCornerRadius="20dp"
-            app:cardBackgroundColor="#CB9E75"
-            android:padding="30dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:background="@drawable/background1"
-                android:backgroundTint="#39FFFFFF"
-                android:backgroundTintMode="src_over"
-                android:padding="10dp">
-
-                <TextView
-                    android:id="@+id/fragment_tripsCard2_title"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Mi viaje a Arequipa"
-                    android:textColor="@android:color/white"
-                    android:textStyle="bold"/>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:gravity="bottom">
-
-                    <TextView
-                        android:id="@+id/fragment_tripsCard2_place"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Mi viaje a Arequipa"
-                        android:textAlignment="viewEnd"
-                        android:textColor="#FFCB77"
-                        android:textSize="25sp"
-                        android:textStyle="bold" />
-                </LinearLayout>
-
-            </LinearLayout>
-
-        </androidx.cardview.widget.CardView>
-
+            android:layout_height="match_parent" />
     </LinearLayout>
 
 

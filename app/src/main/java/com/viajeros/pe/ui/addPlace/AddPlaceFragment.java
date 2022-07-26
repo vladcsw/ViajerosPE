@@ -4,13 +4,14 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.viajeros.pe.databinding.FragmentNotificationsBinding;
+import com.viajeros.pe.firebase.model.TouristPlace;
 
 public class AddPlaceFragment extends Fragment {
 
@@ -18,14 +19,21 @@ public class AddPlaceFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        AddPlaceViewModel notificationsViewModel =
+        AddPlaceViewModel addPlaceViewModel =
                 new ViewModelProvider(this).get(AddPlaceViewModel.class);
 
         binding = FragmentNotificationsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        //final TextView textView = binding.textNotifications;
-        //notificationsViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+
+        Button btn = binding.fragmentAddPlaceButtonAddPlace;
+        btn.setOnClickListener(view -> {
+            TouristPlace touristPlace = new TouristPlace(binding.fragmentAddPlaceEditTextName.getText().toString(),
+                    binding.fragmentAddPlaceEditTextGps.getText().toString(),
+                    binding.fragmentAddPlaceEditTextDescription.getText().toString());
+            addPlaceViewModel.save(touristPlace);
+        });
+
         return root;
     }
 

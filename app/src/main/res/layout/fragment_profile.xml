@@ -4,23 +4,138 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.profile.ProfileFragment"
     android:background="@drawable/background1"
-    android:backgroundTint="#80FFFFFF"
-    android:backgroundTintMode="src_over"    >
+    tools:context=".RegisterActivity">
 
-    <TextView
-        android:id="@+id/text_profile"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
+        android:layout_height="match_parent"
+        android:gravity="top"
+        android:orientation="vertical"
+        android:padding="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
 
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/name_profile"
+            android:textColor="#FFFFFF"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+        <EditText
+            android:id="@+id/name_profile"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:background="#2D2C2C"
+            android:inputType="textPersonName"
+            android:textColor="#FFFFFF"/>
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/lastname_profile"
+            android:textColor="#FFFFFF"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+        <EditText
+            android:id="@+id/lastname_profile"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:background="#2D2C2C"
+            android:inputType="textPersonName"
+            android:textColor="#FFFFFF"/>
+        <TextView
+            android:id="@+id/phoneviewtext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/phone_profile"
+            android:textColor="#FFFFFF"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+        <EditText
+            android:id="@+id/phone_profile"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:background="#2D2C2C"
+            android:inputType="text"
+            android:textColor="#FFFFFF"/>
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/email_profile"
+            android:textColor="#FFFFFF"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+        <EditText
+            android:id="@+id/email_profile"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:background="#2D2C2C"
+            android:inputType="text"
+            android:textColor="#FFFFFF"/>
+        <Button
+            android:id="@+id/save_profile"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:backgroundTint="#1C9637"
+            android:text="@string/save_button_profile"/>
+        <Space
+            android:layout_width="1dp"
+            android:layout_height="25dp" />
+        <TextView
+            android:id="@+id/titlePasswordChange"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/title_password_profile"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+        <TextView
+            android:id="@+id/textView7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/pass1_profile"
+            android:textColor="#FFFFFF"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+        <EditText
+            android:id="@+id/pass1_profile"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:background="#2D2C2C"
+            android:inputType="textPassword"
+            android:textColor="#FFFFFF"/>
+        <TextView
+            android:id="@+id/passwordTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/pass2_profile"
+            android:textColor="#FFFFFF"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+        <EditText
+            android:id="@+id/pass2_profile"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:background="#2D2C2C"
+            android:inputType="textPassword"
+            android:textColor="#FFFFFF"/>
+        <Space
+            android:layout_width="1dp"
+            android:layout_height="35dp" />
+        <Button
+            android:id="@+id/save_pwd_profile"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:backgroundTint="#1C9637"
+            android:text="@string/save_button_profile"/>
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
