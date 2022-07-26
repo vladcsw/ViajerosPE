@@ -100,6 +100,7 @@ public class HomeFragment extends Fragment implements AdaptadorViajes.ItemClickL
         AtomicInteger h = new AtomicInteger();
         ArrayList<String> a = new ArrayList<>();
         a.add("");
+        a.add("prueba");
         HomeSelectViewModel homeSelectViewModel2 = new HomeSelectViewModel(); // Calls view model Binnacle
         homeSelectViewModel2.getAllByUser(uid).observe(this.getViewLifecycleOwner(), data -> {
             binnacleNames.clear();
