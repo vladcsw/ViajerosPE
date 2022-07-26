@@ -19,6 +19,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.viajeros.pe.R;
+
 import com.viajeros.pe.firebase.model.TouristPlace;
 
 import java.util.ArrayList;
@@ -29,6 +30,7 @@ public class MapsFragment extends Fragment {
     Button buttonTodo;
     FloatingActionButton fbaBack, fbaNext;
     private ArrayList<LatLng> locationArrayList;
+
 
     private OnMapReadyCallback callback = new OnMapReadyCallback() {
 
@@ -45,6 +47,7 @@ public class MapsFragment extends Fragment {
         public void onMapReady(GoogleMap googleMap) {
 
             LatLng EPIS = new LatLng(-16.406481373889534, -71.52456067325008);
+
             HomeViewModel homeViewModel = new HomeViewModel();
 
             locationArrayList = new ArrayList<>();
@@ -67,6 +70,7 @@ public class MapsFragment extends Fragment {
             }
 
             googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(EPIS,13));
+
 
         }
     };

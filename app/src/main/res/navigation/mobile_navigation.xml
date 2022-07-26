@@ -46,5 +46,16 @@
         android:label="@string/title_map"
         tools:layout="@layout/fragment_maps" />
 
+    <fragment
+        android:id="@+id/navigation_todo"
+        android:name="com.viajeros.pe.ui.home.ToDoFragment"
+        android:label="ToDo"
+        tools:layout="@layout/fragment_todo" />
+
+    <fragment
+        android:id="@+id/navigation_addtodo"
+        android:name="com.viajeros.pe.ui.home.AddToDoFragment"
+        android:label="ToDo"
+        tools:layout="@layout/fragment_add_to_do" />
 
 </navigation>

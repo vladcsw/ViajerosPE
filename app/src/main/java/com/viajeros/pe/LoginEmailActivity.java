@@ -30,6 +30,9 @@ public class LoginEmailActivity extends AppCompatActivity {
             String password = ((EditText) findViewById(R.id.loginEmail_editTextPassword)).getText().toString();
             //Intent i = new Intent(LoginEmailActivity.this, MainActivityMenu.class);
             //startActivity(i)
+
+
+
             if (email.isEmpty() || password.isEmpty()) {
                 Toast.makeText(mContext, "Correo o contraseña vacios.", Toast.LENGTH_SHORT).show();
             } else {

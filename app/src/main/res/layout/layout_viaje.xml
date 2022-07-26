@@ -1,0 +1,47 @@
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/fragment_tripsCard2"
+    android:layout_width="match_parent"
+    android:layout_height="150dp"
+    android:layout_margin="10dp"
+    android:padding="30dp"
+    app:cardBackgroundColor="#CB9E75"
+    app:cardCornerRadius="20dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/background1"
+        android:backgroundTint="#39FFFFFF"
+        android:backgroundTintMode="src_over"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/fragment_tripsCard2_title"
+            android:layout_width="348dp"
+            android:layout_height="wrap_content"
+            android:text="Mi viaje a Arequipa"
+            android:textColor="@android:color/white"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="bottom"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/fragment_tripsCard2_place"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Mi viaje a Arequipa"
+                android:textAlignment="viewEnd"
+                android:textColor="#FFCB77"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

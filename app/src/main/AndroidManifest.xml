@@ -21,13 +21,20 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="${MAPS_API_KEY}"/>
+        <meta-data
+            android:name="com.google.ar.core"
+            android:value="required"/>
+        <!--<meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="${MAPS_API_KEY}" />-->
         <activity
             android:name=".LoginEmailActivity"
             android:exported="false" />
-        <activity
-            android:name=".ui.login.LoginEmailActivity"
+        <!--<activity
+            android:name=".LoginActivity"
             android:exported="false"
-            android:label="@string/title_activity_login_email" />
+            android:label="@string/title_activity_login_email" />-->
+        <!--android:name=".ui.login.LoginEmailActivity"-->
         <activity
             android:name=".MainActivityMenu"
             android:exported="true"

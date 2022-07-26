@@ -34,8 +34,6 @@ public class HomeViewModel extends ViewModel {
         }
         return allLiveData;
     }
-
-
     public DocumentReferenceFirebaseLiveData<Binnacle> getLiveDataBinnacle(String idBinnacle){
         if (allLiveDataBinnacle == null) {
             allLiveDataBinnacle = binnacleRepository.findById(idBinnacle);
@@ -49,5 +47,6 @@ public class HomeViewModel extends ViewModel {
         }
         return allLiveDataToDoList;
     }
+
 
 }

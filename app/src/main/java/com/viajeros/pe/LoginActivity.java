@@ -26,6 +26,8 @@ import com.viajeros.pe.viewmodel.user.UserViewModel;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 public class LoginActivity extends AppCompatActivity {
 
     private final int GOOGLE_SIGN_IN = 100;
