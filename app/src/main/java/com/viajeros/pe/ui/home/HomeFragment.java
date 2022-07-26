@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.SearchView;
 import android.widget.Toast;
 
+
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.cardview.widget.CardView;
@@ -96,11 +97,6 @@ public class HomeFragment extends Fragment implements AdaptadorViajes.ItemClickL
         binnacle = new Binnacle(uid, savePlace); // Object Binnacle to save
         binnacle.setDocumentId(binnacleIdGenerated);
         homeSelectViewModel = new HomeSelectViewModel(); // Calls view model Binnacle
-        homeSelectViewModel.getAllLiveData().observe(this.getViewLifecycleOwner(), data -> {
-            data.forEach(binnacle1 -> {
-                Log.e("usuariosX", binnacle1.getUserId().toString());
-            });
-        });
         AtomicInteger h = new AtomicInteger();
         ArrayList<String> a = new ArrayList<>();
         a.add("");
