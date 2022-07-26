@@ -26,6 +26,8 @@ public class HomeSelectFragment extends Fragment implements AdaptadorPlaces.Item
     private HomeViewModel homeViewModel;
     private ArrayList<String> placesNames;
     private AdaptadorPlaces adapter;
+    private String uid;
+    private String bid;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,7 +38,7 @@ public class HomeSelectFragment extends Fragment implements AdaptadorPlaces.Item
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-
+        //Log.e("bundle",getArguments().getString("amount")) ;
         placesNames = new ArrayList<>();
       /*  placesNames.add("asdf");
         placesNames.add("asdasdff");
@@ -50,12 +52,14 @@ public class HomeSelectFragment extends Fragment implements AdaptadorPlaces.Item
 
         homeViewModel = new HomeViewModel();
 
-        String uid = AuthService.firebaseGetCurrentUser().getUid();
+        //String uid = AuthService.firebaseGetCurrentUser().getUid();
         /*OBTENER LOS DESTINOS DEL VIAJE SELECCIONADO*/
         //EJEMPLO DE VIAJE o BITACORA (BINNACLE)
 
+        uid = getArguments().get("uid").toString();
+        bid = getArguments().get("bid").toString();
 
-        homeViewModel.getLiveDataBinnacle("1Z9FrVsQNM5EV3Bo1I9r").observe(this.getViewLifecycleOwner(), data->{
+        homeViewModel.getLiveDataBinnacle(bid).observe(this.getViewLifecycleOwner(), data->{
             data.getPlaces().forEach(touristPlace -> {
                 Log.e("TAG", "LUGARES DE UNA BITACORA: "+touristPlace.getName());
                 placesNames.add(touristPlace.getName());
@@ -69,10 +73,6 @@ public class HomeSelectFragment extends Fragment implements AdaptadorPlaces.Item
 
 
 
-
-
-
-
         buttonTodo = view.findViewById(R.id.fragmentHomeSelect_buttonToDo);
         fbaBack = view.findViewById(R.id.fragmentHomeSelect_fabBefore);
         fbaNext = view.findViewById(R.id.fragmentHomeSelect_fabNext);
@@ -80,8 +80,12 @@ public class HomeSelectFragment extends Fragment implements AdaptadorPlaces.Item
         buttonTodo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Toast.makeText(view.getContext(), "Mi lista por hacer", Toast.LENGTH_LONG).show();
-                Navigation.findNavController(view).navigate(R.id.navigation_todo);
+                //Toast.makeText(view.getContext(), "Mi lista por hacer", Toast.LENGTH_LONG).show();}
+
+                Bundle bundle = new Bundle();
+                bundle.putString("uid", uid);
+                bundle.putString("bid", bid);
+                Navigation.findNavController(view).navigate(R.id.navigation_todo,bundle);
             }
         });
 

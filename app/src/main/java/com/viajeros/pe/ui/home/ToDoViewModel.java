@@ -25,6 +25,7 @@ public class ToDoViewModel extends ViewModel {
     public MultipleDocumentReferenceLiveData<ToDoList, Query> getAllLiveData() {
         if(allLiveData == null){
             allLiveData = toDoListRepository.findAll();
+
         }
         return allLiveData;
     }
@@ -84,6 +85,10 @@ public class ToDoViewModel extends ViewModel {
     }
 
     public void setH(ToDoList toDoList, String h){
+
         toDoListRepository.setIdX(toDoList,h);
+    }
+    public boolean test(String x){
+        return toDoListRepository.findDocument(x);
     }
 }

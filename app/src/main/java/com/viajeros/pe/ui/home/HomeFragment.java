@@ -42,8 +42,15 @@ public class HomeFragment extends Fragment implements AdaptadorViajes.ItemClickL
     private SearchView.OnQueryTextListener queryTextListener;
     private CardView cardView02;
     private ArrayList<String> binnacleNames;
+    private ArrayList<String> binnacleDocuments = new ArrayList<>();
+
     private HomeViewModel homeViewModel;
+    private HomeSelectViewModel homeSelectViewModel;
+    List<TouristPlace> savePlace = new ArrayList<>(); // List of TouristPlaces
+    Binnacle binnacle;
+    String binnacleIdGenerated;
     AdaptadorViajes adapter;
+    String uid;
 
     @RequiresApi(api = Build.VERSION_CODES.N) // Only work if exist foreach
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -52,6 +59,7 @@ public class HomeFragment extends Fragment implements AdaptadorViajes.ItemClickL
         // data to populate the RecyclerView with
         binnacleNames = new ArrayList<>();
         binnacleNames.add("");
+
         /*animalNames.add("Horse");
         animalNames.add("Cow");
         animalNames.add("Camel");
@@ -60,7 +68,7 @@ public class HomeFragment extends Fragment implements AdaptadorViajes.ItemClickL
 
         //
         // Example
-        List<TouristPlace> savePlace = new ArrayList<>(); // List of TouristPlaces
+
 
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
@@ -68,12 +76,11 @@ public class HomeFragment extends Fragment implements AdaptadorViajes.ItemClickL
         RecyclerView recyclerView = view.findViewById(R.id.rv_viajes);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
 
-
         homeViewModel = new HomeViewModel(); // Calls view model Home
         // Get all tourist places saved id FireStore and fill the list of TouristPlaces
         homeViewModel.getAllLiveData().observe(getViewLifecycleOwner(), savePlace::addAll);
 
-        String uid = AuthService.firebaseGetCurrentUser().getUid(); // Get id of current user logged
+        uid = AuthService.firebaseGetCurrentUser().getUid(); // Get id of current user logged
         Log.e("Usuario", "ID: " + uid);
         homeViewModel.getAllLiveData().observe(this.getViewLifecycleOwner(), data -> {
             data.forEach(touristPlace -> {
@@ -82,26 +89,34 @@ public class HomeFragment extends Fragment implements AdaptadorViajes.ItemClickL
         });
 
         Utils utils = new Utils(); // Own class utils created
-        String binnacleIdGenerated = utils.getDocumentIdGenerated("Binnacle");
+        binnacleIdGenerated = utils.getDocumentIdGenerated("Binnacle");
         Log.e("Generated Id", binnacleIdGenerated); // Print generated id
 
-        Binnacle binnacle = new Binnacle(uid, savePlace); // Object Binnacle to save
+        Log.e("X123", savePlace.toString());
+        binnacle = new Binnacle(uid, savePlace); // Object Binnacle to save
         binnacle.setDocumentId(binnacleIdGenerated);
-        HomeSelectViewModel homeSelectViewModel = new HomeSelectViewModel(); // Calls view model Binnacle
+        homeSelectViewModel = new HomeSelectViewModel(); // Calls view model Binnacle
         homeSelectViewModel.getAllLiveData().observe(this.getViewLifecycleOwner(), data -> {
             data.forEach(binnacle1 -> {
-                Log.e("usuarios", binnacle1.getUserId().toString());
+                Log.e("usuariosX", binnacle1.getUserId().toString());
             });
         });
         AtomicInteger h = new AtomicInteger();
         ArrayList<String> a = new ArrayList<>();
         a.add("");
-        homeSelectViewModel.getAllByUser(uid).observe(this.getViewLifecycleOwner(), data -> {
+        HomeSelectViewModel homeSelectViewModel2 = new HomeSelectViewModel(); // Calls view model Binnacle
+        homeSelectViewModel2.getAllByUser(uid).observe(this.getViewLifecycleOwner(), data -> {
+            binnacleNames.clear();
+            binnacleDocuments.clear();
+            binnacleNames.add("");
+            binnacleDocuments.add("");
+            h.set(0);
             data.forEach(binaclet ->{
                 Log.e("usuarios", "test");
                     h.getAndIncrement();
                     Log.e("testBina2",binaclet.getUserId());
                     binnacleNames.add("Viaje"+h);
+                    binnacleDocuments.add(binaclet.getDocumentId());
                     a.add(binaclet.getDocumentId());
 
             });
@@ -193,7 +208,13 @@ public class HomeFragment extends Fragment implements AdaptadorViajes.ItemClickL
     public void onItemClick(View view, int position) {
         Log.e("usuarios2", "test");
         if(position > 0){
-            Toast.makeText(view.getContext(), "You clicked " + adapter.getItem(position) +adapter.getCode().get(position) +  " on row number " + position, Toast.LENGTH_SHORT).show();
+            //Toast.makeText(view.getContext(), "You clicked " + adapter.getItem(position) +adapter.getCode().get(position) +  " on row number " + position, Toast.LENGTH_SHORT).show();
+            Toast.makeText(view.getContext(), "Mi nuevo viaje", Toast.LENGTH_LONG).show();
+            Bundle bundle = new Bundle();
+            bundle.putString("uid", uid);
+            bundle.putString("bid", binnacleDocuments.get(position));
+            Navigation.findNavController(view).navigate(R.id.navigation_homeSelect,bundle);
+            Log.e("doc",binnacleDocuments.get(position));
         }else{
             /*String uid = AuthService.firebaseGetCurrentUser().getUid(); // Get id of current user logged
             ToDoViewModel toDoViewModel = new ToDoViewModel(); // Calls view model TodoList
@@ -203,8 +224,21 @@ public class HomeFragment extends Fragment implements AdaptadorViajes.ItemClickL
             itemList.add(new ToDoListItem(true, "Ir a correr"));
             ToDoList toDoList = new ToDoList(uid, "fddasass", true, itemList); /// ToDoList object
             toDoViewModel.save(toDoList); // Save ToDoList in FireStore*/
-            Toast.makeText(view.getContext(), "Mi nuevo viaje", Toast.LENGTH_LONG).show();
-            Navigation.findNavController(view).navigate(R.id.navigation_homeSelect);
+            /*Toast.makeText(view.getContext(), "Mi nuevo viaje", Toast.LENGTH_LONG).show();
+            Navigation.findNavController(view).navigate(R.id.navigation_homeSelect);*/
+            Log.e("testx",savePlace.toString());
+            homeSelectViewModel.saveWithIdGenerated(binnacle, binnacleIdGenerated); // Save binnacle in FireStore
+
+            Bundle bundle = new Bundle();
+            bundle.putString("uid", uid);
+            bundle.putString("bid", binnacleIdGenerated);
+
+            List<ToDoListItem> itemList = new ArrayList<>();
+
+            ToDoList toDoList = new ToDoList(uid, binnacleIdGenerated, true, itemList);
+            ToDoViewModel todo = new ToDoViewModel();
+            todo.save(toDoList);
+            Navigation.findNavController(view).navigate(R.id.navigation_homeSelect,bundle);
 
         }
     }

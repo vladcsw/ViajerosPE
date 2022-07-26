@@ -25,9 +25,11 @@ public class AdaptadorPlaces extends RecyclerView.Adapter<AdaptadorPlaces.Adapta
     private LayoutInflater mInflater;
     private ItemClickListener mClickListener;
 
+
     AdaptadorPlaces(Context context, List<String> data) {
         this.mInflater = LayoutInflater.from(context);
         this.mData = data;
+
     }
 
     @NonNull

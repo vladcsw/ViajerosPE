@@ -1,23 +1,37 @@
 package com.viajeros.pe.ui.home;
 
+import android.app.SearchManager;
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.SearchView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.LifecycleOwner;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.viajeros.pe.R;
+import com.viajeros.pe.firebase.model.ToDoList;
+import com.viajeros.pe.firebase.model.ToDoListItem;
+import com.viajeros.pe.firebase.model.TouristPlace;
 import com.viajeros.pe.firebase.service.AuthService;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class TodoFragment extends Fragment implements AdaptadorTodo.ItemClickListener {
 
@@ -27,10 +41,13 @@ public class TodoFragment extends Fragment implements AdaptadorTodo.ItemClickLis
     private ArrayList<String> todoNames;
     private ArrayList<Boolean> checkTodoNames;
     private AdaptadorTodo adapter;
+    String uid;
+    String bid;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        setHasOptionsMenu(true);
     }
 
     @Override
@@ -40,6 +57,8 @@ public class TodoFragment extends Fragment implements AdaptadorTodo.ItemClickLis
 
         todoNames = new ArrayList<>();
         checkTodoNames = new ArrayList<>();
+        uid = getArguments().get("uid").toString();
+        bid = getArguments().get("bid").toString();
       /*  todoNames.add("asdf");
         todoNames.add("asdasdff");
         todoNames.add("asdaasdsdff");*/
@@ -58,9 +77,21 @@ public class TodoFragment extends Fragment implements AdaptadorTodo.ItemClickLis
 
         todoNames.clear();
         checkTodoNames.clear();
-        todoViewModel.findByBinnacle("kXq9kQitaJBbP73fawwr").observe(this.getViewLifecycleOwner(), data->{
-            data.forEach(touristPlace -> {
 
+        /*todoNames.add("Ir a caminar");
+        todoNames.add("Ir a comer");
+        todoNames.add("Ir a correr");
+        checkTodoNames.add(true);
+        checkTodoNames.add(true);
+        checkTodoNames.add(true);
+        adapter = new AdaptadorTodo(view.getContext(), todoNames, checkTodoNames);
+        adapter.setClickListener(this::onItemClick);
+        recyclerView.setAdapter(adapter);
+        Log.e("H1","H1");*/
+        todoViewModel.findByBinnacle(bid).observe(this.getViewLifecycleOwner(), data->{
+            data.forEach(touristPlace -> {
+                todoNames.clear();
+                checkTodoNames.clear();
                 for (int i = 0; i<touristPlace.getItemList().size(); i++){
                     Log.e("TAG", "TODO LIST: "+touristPlace.getItemList().get(i).getStatement());
                     todoNames.add(touristPlace.getItemList().get(i).getStatement());
@@ -70,9 +101,13 @@ public class TodoFragment extends Fragment implements AdaptadorTodo.ItemClickLis
 
                 //todoNames.add(touristPlace.getItemList());
             });
-            adapter = new AdaptadorTodo(view.getContext(), todoNames, checkTodoNames);
+
+            adapter = new AdaptadorTodo(view.getContext(), todoNames, checkTodoNames, uid, bid);
             adapter.setClickListener(this::onItemClick);
             recyclerView.setAdapter(adapter);
+            Log.e("H1","H1");
+
+
         });
 
 
@@ -111,4 +146,70 @@ public class TodoFragment extends Fragment implements AdaptadorTodo.ItemClickLis
 
     }
 
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        inflater.inflate(R.menu.menu02, menu);
+        super.onCreateOptionsMenu(menu,inflater);
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        switch (item.getItemId()){
+            case R.id.app_bar_add:
+                if (item.getItemId() == R.id.app_bar_add){
+                    Bundle bundle = new Bundle();
+                    bundle.putString("uid", uid);
+                    bundle.putString("bid", bid);
+                    Navigation.findNavController(getView()).navigate(R.id.navigation_addtodo, bundle);
+                }
+
+                //.e("memu","men");
+               /* List<ToDoListItem> itemList = new ArrayList<>();
+                itemList.add(new ToDoListItem(false, "Ir a caminar"));
+                List<ToDoList> savePlace = new ArrayList<>(); // List of TouristPlaces
+                ToDoList f = new ToDoList("DSH3CzFvIMYFDvMLHGvBEPdbM7d2","cSksnzFszcriepLWGuUU",true, itemList);
+
+                todoViewModel.setH(f,"cSksnzFszcriepLWGuUU");
+                savePlace.add(f);
+                todoViewModel.getAllLiveData().observe(getViewLifecycleOwner(), savePlace::addAll);*/
+                //AtomicReference<ToDoList> g = new AtomicReference<>();
+
+                //You can call detail fragment here
+
+                /*int i = 0;
+
+                Log.e("MM",i+"");
+                i++;
+                final int[] finalI = {i};
+                todoViewModel.findByBinnacle("kXq9kQitaJBbP73fawwr").observe( getViewLifecycleOwner(), data-> {
+                    for (ToDoList touristPlace : data) {
+                        if (finalI[0] < 2) {
+
+                            finalI[0]++;
+                            touristPlace.getItemList().add(new ToDoListItem(true,"Ir de "));
+                            Log.e("IF", touristPlace.getItemList().toString());
+                            g.set(new ToDoList("DSH3CzFvIMYFDvMLHGvBEPdbM7d2", "kXq9kQitaJBbP73fawwr", true, touristPlace.getItemList()));
+                            todoViewModel.setH(g.get(), touristPlace.getDocumentId());
+
+                            //clear();
+                            todoViewModel.update(g.get());
+                            break;
+                        }
+                    }
+                });*/
+            case android.R.id.home:
+                if (item.getItemId() == android.R.id.home){
+                    Bundle bundle = new Bundle();
+                    bundle.putString("uid", uid);
+                    bundle.putString("bid", bid);
+                    Navigation.findNavController(getView()).navigate(R.id.navigation_homeSelect, bundle);
+                }
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
+    }
 }

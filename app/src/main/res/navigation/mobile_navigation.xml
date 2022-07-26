@@ -51,4 +51,11 @@
         android:name="com.viajeros.pe.ui.home.TodoFragment"
         android:label="ToDo"
         tools:layout="@layout/fragment_todo" />
+
+    <fragment
+        android:id="@+id/navigation_addtodo"
+        android:name="com.viajeros.pe.ui.home.AddToDoFragment"
+        android:label="ToDo"
+        tools:layout="@layout/fragment_add_to_do" />
+
 </navigation>

@@ -3,11 +3,17 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/AndroidS2Workspace/ViajerosPE/app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.1875" />
+        <entry key="..\:/AndroidS2Workspace/ViajerosPE/app/src/main/res/drawable/ic_baseline_add_circle_outline_24.xml" value="0.2075" />
+        <entry key="..\:/AndroidS2Workspace/ViajerosPE/app/src/main/res/drawable/ic_baseline_search_24.xml" value="0.2075" />
+        <entry key="..\:/AndroidS2Workspace/ViajerosPE/app/src/main/res/drawable/ic_dashboard_black_24dp.xml" value="0.1875" />
+        <entry key="..\:/AndroidS2Workspace/ViajerosPE/app/src/main/res/drawable/ic_icon_search_2.xml" value="0.1875" />
         <entry key="..\:/AndroidS2Workspace/ViajerosPE/app/src/main/res/layout/activity_login.xml" value="0.19010416666666666" />
         <entry key="..\:/AndroidS2Workspace/ViajerosPE/app/src/main/res/layout/activity_login_email.xml" value="0.19010416666666666" />
         <entry key="..\:/AndroidS2Workspace/ViajerosPE/app/src/main/res/layout/activity_main.xml" value="0.19010416666666666" />
         <entry key="..\:/AndroidS2Workspace/ViajerosPE/app/src/main/res/layout/activity_main_menu.xml" value="0.19010416666666666" />
         <entry key="..\:/AndroidS2Workspace/ViajerosPE/app/src/main/res/layout/activity_register.xml" value="0.19010416666666666" />
+        <entry key="..\:/AndroidS2Workspace/ViajerosPE/app/src/main/res/layout/fragment_add_to_do.xml" value="0.2" />
         <entry key="..\:/AndroidS2Workspace/ViajerosPE/app/src/main/res/layout/fragment_dashboard.xml" value="0.19010416666666666" />
         <entry key="..\:/AndroidS2Workspace/ViajerosPE/app/src/main/res/layout/fragment_home.xml" value="0.18" />
         <entry key="..\:/AndroidS2Workspace/ViajerosPE/app/src/main/res/layout/fragment_home_select.xml" value="0.25" />
@@ -19,6 +25,9 @@
         <entry key="..\:/AndroidS2Workspace/ViajerosPE/app/src/main/res/layout/layout_add_viaje.xml" value="0.1859375" />
         <entry key="..\:/AndroidS2Workspace/ViajerosPE/app/src/main/res/layout/layout_places.xml" value="0.19010416666666666" />
         <entry key="..\:/AndroidS2Workspace/ViajerosPE/app/src/main/res/layout/layout_viaje.xml" value="0.1" />
+        <entry key="..\:/AndroidS2Workspace/ViajerosPE/app/src/main/res/menu/menu01.xml" value="0.1" />
+        <entry key="..\:/AndroidS2Workspace/ViajerosPE/app/src/main/res/menu/menu02.xml" value="0.203125" />
+        <entry key="..\:/AndroidS2Workspace/ViajerosPE/app/src/main/res/menu/menu03.xml" value="0.203125" />
         <entry key="..\:/Programming/viajerosPE/ViajerosPE/app/src/main/res/drawable/ic_icon_search_2.xml" value="0.1935" />
         <entry key="..\:/Programming/viajerosPE/ViajerosPE/app/src/main/res/drawable/ic_users.xml" value="0.287" />
         <entry key="..\:/Programming/viajerosPE/ViajerosPE/app/src/main/res/layout/activity_login.xml" value="0.358695652173913" />
