@@ -16,7 +16,7 @@ public class AuthService {
         return firebaseAuth.signInWithEmailAndPassword(email, password);
     }
 
-    public void firebaseSingOut() {
+    public static void firebaseSingOut() {
         firebaseAuth.signOut();
     }
 
