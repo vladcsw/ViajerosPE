@@ -22,7 +22,7 @@ public class BinnacleRepository extends FirebaseRepository<Binnacle> {
 
     public MultipleDocumentReferenceLiveData<Binnacle, Query> finByUser(String uid) {
 
-        return new MultipleDocumentReferenceLiveData<>(collectionReference.whereEqualTo("userID", uid), entityClass);
+        return new MultipleDocumentReferenceLiveData<>(collectionReference.whereEqualTo("userId", uid), entityClass);
     }
 
 

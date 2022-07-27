@@ -91,17 +91,17 @@ public class HomeFragment extends Fragment implements AdaptadorViajes.ItemClickL
 
         Utils utils = new Utils(); // Own class utils created
         binnacleIdGenerated = utils.getDocumentIdGenerated("Binnacle");
-        Log.e("Generated Id", binnacleIdGenerated); // Print generated id
+        Log.e("TAG", binnacleIdGenerated); // Print generated id
 
-        Log.e("X123", savePlace.toString());
+        Log.e("TAG", savePlace.toString());
         binnacle = new Binnacle(uid, savePlace); // Object Binnacle to save
         binnacle.setDocumentId(binnacleIdGenerated);
         homeSelectViewModel = new HomeSelectViewModel(); // Calls view model Binnacle
         AtomicInteger h = new AtomicInteger();
         ArrayList<String> a = new ArrayList<>();
         a.add("");
-        a.add("prueba");
-        HomeSelectViewModel homeSelectViewModel2 = new HomeSelectViewModel(); // Calls view model Binnacle
+        HomeSelectViewModel homeSelectViewModel2 = new HomeSelectViewModel();
+        Log.e("UID",uid);// Calls view model Binnacle
         homeSelectViewModel2.getAllByUser(uid).observe(this.getViewLifecycleOwner(), data -> {
             binnacleNames.clear();
             binnacleDocuments.clear();
@@ -109,9 +109,9 @@ public class HomeFragment extends Fragment implements AdaptadorViajes.ItemClickL
             binnacleDocuments.add("");
             h.set(0);
             data.forEach(binaclet ->{
-                Log.e("usuarios", "test");
+                Log.e("TAG", "test");
                 h.getAndIncrement();
-                Log.e("testBina2",binaclet.getUserId());
+                Log.e("TAG",binaclet.getUserId());
                 binnacleNames.add("Viaje"+h);
                 binnacleDocuments.add(binaclet.getDocumentId());
                 a.add(binaclet.getDocumentId());
