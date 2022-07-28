@@ -93,7 +93,7 @@ public class HomeFragment extends Fragment implements AdaptadorViajes.ItemClickL
         Log.e("Generated Id", binnacleIdGenerated); // Print generated id
 
         Log.e("X123", savePlace.toString());
-        binnacle = new Binnacle(uid, savePlace); // Object Binnacle to save
+        binnacle = new Binnacle(uid, savePlace, "name"); // Object Binnacle to save
         binnacle.setDocumentId(binnacleIdGenerated);
         homeSelectViewModel = new HomeSelectViewModel(); // Calls view model Binnacle
 

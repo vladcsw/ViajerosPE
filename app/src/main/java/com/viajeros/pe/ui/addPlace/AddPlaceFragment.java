@@ -30,7 +30,8 @@ public class AddPlaceFragment extends Fragment {
         btn.setOnClickListener(view -> {
             TouristPlace touristPlace = new TouristPlace(binding.fragmentAddPlaceEditTextName.getText().toString(),
                     binding.fragmentAddPlaceEditTextGps.getText().toString(),
-                    binding.fragmentAddPlaceEditTextDescription.getText().toString());
+                    binding.fragmentAddPlaceEditTextDescription.getText().toString(),
+                    false);
             addPlaceViewModel.save(touristPlace);
         });
 

@@ -20,4 +20,6 @@ public class Binnacle extends FirebaseEntity{
     private String userId;
     @Getter(AccessLevel.PUBLIC)
     private List<TouristPlace> places;
+    @Getter(AccessLevel.PUBLIC)
+    private String name;
 }

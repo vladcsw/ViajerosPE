@@ -68,7 +68,7 @@ public class RegisterActivity extends AppCompatActivity {
                        Utils utils = new Utils(); // Own class utils created
                        String binnacleIdGenerated = utils.getDocumentIdGenerated("Binnacle");
                        //String uid = AuthService.firebaseGetCurrentUser().getUid(); // Get id of current user logged
-                       Binnacle binnacle = new Binnacle(authUser.getUid(), savePlace); // Object Binnacle to save
+                       Binnacle binnacle = new Binnacle(authUser.getUid(), savePlace, "name"); // Object Binnacle to save
                        binnacle.setDocumentId(binnacleIdGenerated);
                        homeSelectViewModel.saveWithIdGenerated(binnacle, binnacleIdGenerated); // Save binnacle in FireStore
                        List<ToDoListItem> itemList = new ArrayList<>();

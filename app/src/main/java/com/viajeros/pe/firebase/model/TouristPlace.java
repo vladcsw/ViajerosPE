@@ -20,4 +20,6 @@ public class TouristPlace extends FirebaseEntity{
     private String coordinates;
     @Getter(AccessLevel.PUBLIC)
     private String description;
+    @Getter(AccessLevel.PUBLIC)
+    private Boolean state;
 }

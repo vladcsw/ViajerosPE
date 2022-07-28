@@ -63,7 +63,7 @@ public class FirebaseRepository <E extends FirebaseEntity> implements CrudFireba
 
     @Override
     public void update(E entity) {
-        this.collectionReference.document(entity.getDocumentId()).set(entity, SetOptions.mergeFields("itemList"));
+        this.collectionReference.document(entity.getDocumentId()).set(entity);
     }
 
     @Override
