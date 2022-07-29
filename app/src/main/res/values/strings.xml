@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">My Application</string>
+    <string name="app_name">ViajerosPE</string>
     <string name="login_message">Bienvenido a tu nueva aventura</string>
     <string name="login_message2">¿No te encuentras registrado?</string>
     <string name="login_button_loginGoogle">Iniciar sesión con Google</string>
