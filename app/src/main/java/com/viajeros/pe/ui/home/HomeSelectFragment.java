@@ -8,8 +8,11 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.LifecycleOwner;
 import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -28,6 +31,8 @@ public class HomeSelectFragment extends Fragment implements AdaptadorPlaces.Item
     private AdaptadorPlaces adapter;
     private String uid;
     private String bid;
+    private ArrayList<Boolean> checkTodoNames = new ArrayList<>();
+    View view;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,7 +49,7 @@ public class HomeSelectFragment extends Fragment implements AdaptadorPlaces.Item
         placesNames.add("asdasdff");
         placesNames.add("asdaasdsdff");*/
         //fragmentHomeSelect_buttonToDo
-        View view = inflater.inflate(R.layout.fragment_home_select, container, false);
+        view = inflater.inflate(R.layout.fragment_home_select, container, false);
         // set up the RecyclerView
         RecyclerView recyclerView = view.findViewById(R.id.rv_places);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
@@ -60,11 +65,16 @@ public class HomeSelectFragment extends Fragment implements AdaptadorPlaces.Item
         bid = getArguments().get("bid").toString();
 
         homeViewModel.getLiveDataBinnacle(bid).observe(this.getViewLifecycleOwner(), data->{
+
+            checkTodoNames.clear();
+            placesNames.clear();
+
             data.getPlaces().forEach(touristPlace -> {
                 Log.e("TAG", "LUGARES DE UNA BITACORA: "+touristPlace.getName());
                 placesNames.add(touristPlace.getName());
+                checkTodoNames.add(touristPlace.getState());
             });
-            adapter = new AdaptadorPlaces(view.getContext(), placesNames);
+            adapter = new AdaptadorPlaces(view.getContext(), placesNames, checkTodoNames, uid, bid);
             adapter.setClickListener(this::onItemClick);
             recyclerView.setAdapter(adapter);
         });
@@ -109,8 +119,10 @@ public class HomeSelectFragment extends Fragment implements AdaptadorPlaces.Item
 
     @Override
     public void onItemClick(View view, int position) {
-        Toast.makeText(view.getContext(), "You clicked " + adapter.getItem(position)  +  " on row number " + position, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(view.getContext(), "You clicked " + adapter.getItem(position)  +  " on row number " + position, Toast.LENGTH_SHORT).show();
 
     }
+
+
 
 }

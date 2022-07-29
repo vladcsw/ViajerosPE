@@ -19,6 +19,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -43,6 +44,8 @@ public class TodoFragment extends Fragment implements AdaptadorTodo.ItemClickLis
     private AdaptadorTodo adapter;
     String uid;
     String bid;
+    String tid;
+    View view;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -63,7 +66,7 @@ public class TodoFragment extends Fragment implements AdaptadorTodo.ItemClickLis
         todoNames.add("asdasdff");
         todoNames.add("asdaasdsdff");*/
         //fragmentHomeSelect_buttonToDo
-        View view = inflater.inflate(R.layout.fragment_todo, container, false);
+        view = inflater.inflate(R.layout.fragment_todo, container, false);
         // set up the RecyclerView
         RecyclerView recyclerView = view.findViewById(R.id.rv_places);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
@@ -96,6 +99,7 @@ public class TodoFragment extends Fragment implements AdaptadorTodo.ItemClickLis
                     Log.e("TAG", "TODO LIST: "+touristPlace.getItemList().get(i).getStatement());
                     todoNames.add(touristPlace.getItemList().get(i).getStatement());
                     checkTodoNames.add(touristPlace.getItemList().get(i).getItem_state());
+                    tid = touristPlace.getDocumentId();
 
                 }
 
@@ -104,6 +108,7 @@ public class TodoFragment extends Fragment implements AdaptadorTodo.ItemClickLis
 
             adapter = new AdaptadorTodo(view.getContext(), todoNames, checkTodoNames, uid, bid);
             adapter.setClickListener(this::onItemClick);
+            new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(recyclerView);
             recyclerView.setAdapter(adapter);
             Log.e("H1","H1");
 
@@ -142,7 +147,7 @@ public class TodoFragment extends Fragment implements AdaptadorTodo.ItemClickLis
 
     @Override
     public void onItemClick(View view, int position) {
-        Toast.makeText(view.getContext(), "You clicked " + adapter.getItem(position)  +  " on row number " + position, Toast.LENGTH_SHORT).show();
+       // Toast.makeText(view.getContext(), "You clicked " + adapter.getItem(position)  +  " on row number " + position, Toast.LENGTH_SHORT).show();
 
     }
 
@@ -212,4 +217,33 @@ public class TodoFragment extends Fragment implements AdaptadorTodo.ItemClickLis
         }
 
     }
+
+    ItemTouchHelper.SimpleCallback itemTouchHelperCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT) {
+        @Override
+        public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+            return false;
+        }
+
+        @Override
+        public int getDragDirs(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder) {
+            return super.getDragDirs(recyclerView, viewHolder);
+        }
+
+        @Override
+        public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+            ToDoViewModel todoViewModel2 = new ToDoViewModel();
+
+            final int[] i = {1};
+            todoViewModel2.findByBinnacle(bid).observe((LifecycleOwner) view.getContext(), data -> {
+
+                if (i[0] == 1){
+                    i[0]++;
+                    data.get(0).getItemList().remove(viewHolder.getAdapterPosition());
+                    todoViewModel2.saveWithId(data.get(0),tid);
+
+                }
+
+            });
+        }
+    };
 }

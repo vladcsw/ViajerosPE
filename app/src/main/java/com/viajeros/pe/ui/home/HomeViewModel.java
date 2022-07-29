@@ -37,4 +37,13 @@ public class HomeViewModel extends ViewModel {
         return allLiveDataBinnacle;
     }
 
+    // Save a document in FireStore with a generated Id
+    public void saveWithIdGenerated(Binnacle binnacle , String id){
+        binnacleRepository.saveWithExistentId(binnacle, id);
+    }
+
+
+
+
+
 }

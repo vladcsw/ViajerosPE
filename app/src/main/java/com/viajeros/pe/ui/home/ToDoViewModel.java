@@ -70,6 +70,13 @@ public class ToDoViewModel extends ViewModel {
 
     }
 
+    public void saveWithId(ToDoList toDoList, String bid){
+
+        Log.e("usuariosX", "test");
+        toDoListRepository.saveWithExistentId(toDoList, bid);
+
+    }
+
     // Delete a document in FireStore
     public void delete(ToDoList toDoList){
         toDoListRepository.delete(toDoList);

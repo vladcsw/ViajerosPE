@@ -54,11 +54,11 @@ public class RegisterActivity extends AppCompatActivity {
                if(task.isSuccessful()) {
 
 
-                   FirebaseUser authUser = AuthService.firebaseGetCurrentUser();
+                   //FirebaseUser authUser = AuthService.firebaseGetCurrentUser();
 
                    userViewModel.saveUser(user);
 
-                   HomeViewModel homeViewModel;
+                   /*HomeViewModel homeViewModel;
                    List<TouristPlace> savePlace = new ArrayList<>(); // List of TouristPlaces
                    homeViewModel = new HomeViewModel(); // Calls view model Home
                    // Get all tourist places saved id FireStore and fill the list of TouristPlaces
@@ -75,7 +75,7 @@ public class RegisterActivity extends AppCompatActivity {
                        ToDoList toDoList = new ToDoList(authUser.getUid(), binnacleIdGenerated, true, itemList);
                        ToDoViewModel todo = new ToDoViewModel();
                        todo.save(toDoList);
-                   });
+                   });*/
 
                    Toast.makeText(getApplicationContext(), "Cuenta creada correctamente", Toast.LENGTH_LONG).show();
                    Intent i = new Intent(RegisterActivity.this, MainActivityMenu.class);

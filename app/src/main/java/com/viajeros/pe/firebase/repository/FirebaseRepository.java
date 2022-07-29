@@ -50,6 +50,7 @@ public class FirebaseRepository <E extends FirebaseEntity> implements CrudFireba
 
     }
 
+
     @Override
     public void saveAll(List<E> entities) {
         Log.e("save2", "save");
