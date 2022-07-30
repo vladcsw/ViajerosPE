@@ -26,6 +26,8 @@ public class AdaptadorViajes extends RecyclerView.Adapter<AdaptadorViajes.Adapta
         this.mData = data;
     }
 
+
+
     @NonNull
     @Override
     public AdaptadorViajesHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -55,6 +57,11 @@ public class AdaptadorViajes extends RecyclerView.Adapter<AdaptadorViajes.Adapta
     @Override
     public int getItemCount() {
         return mData.size();
+    }
+
+    public void addArray(Context context, ArrayList<String> binnacleNames) {
+        this.mInflater = LayoutInflater.from(context);
+        this.mData.addAll(binnacleNames);
     }
 
     class AdaptadorViajesHolder extends RecyclerView.ViewHolder implements View.OnClickListener{

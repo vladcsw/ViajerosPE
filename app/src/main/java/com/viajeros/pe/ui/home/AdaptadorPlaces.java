@@ -2,33 +2,38 @@ package com.viajeros.pe.ui.home;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.LifecycleOwner;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.viajeros.pe.R;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class AdaptadorPlaces extends RecyclerView.Adapter<AdaptadorPlaces.AdaptadorViajesHolder> {
 
     private List<String> mData;
     private LayoutInflater mInflater;
     private ItemClickListener mClickListener;
+    private List<Boolean> mCheck;
+    private String uid;
+    private String bid;
 
 
-    AdaptadorPlaces(Context context, List<String> data) {
+    AdaptadorPlaces(Context context, List<String> data, List<Boolean> check, String uid, String bid) {
         this.mInflater = LayoutInflater.from(context);
         this.mData = data;
+        this.mCheck = check;
+        this.uid = uid;
+        this.bid = bid;
 
     }
 
@@ -44,16 +49,35 @@ public class AdaptadorPlaces extends RecyclerView.Adapter<AdaptadorPlaces.Adapta
     @Override
     public void onBindViewHolder(@NonNull AdaptadorViajesHolder holder, @SuppressLint("RecyclerView") int position) {
 
-            String place = mData.get(position);
-            holder.txt1.setText(place);
-            holder.check.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    String id=mData.get(position);
-                    Log.e("positioncheck",id);
-                    //You can call detail fragment here
-                }
-            });
+        String place = mData.get(position);
+        holder.txt1.setText(place);
+
+        final boolean placeChecked = mCheck.get(position);
+        holder.txt1.setText(place);
+        holder.check.setChecked(placeChecked);
+        holder.check.setOnCheckedChangeListener(null);
+
+        holder.check.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+
+                HomeViewModel homeViewModel = new HomeViewModel();
+                final int[] i = {1};
+                homeViewModel.getLiveDataBinnacle(bid).observe((LifecycleOwner) compoundButton.getContext(), data -> {
+
+                    if (i[0] == 1){
+                        i[0]++;
+                        data.getPlaces().get(position).setState(b);
+                        homeViewModel.saveWithIdGenerated(data,bid);
+
+                    }
+
+                });
+
+                holder.check.setChecked(b);
+            }
+        });
+
     }
 
 

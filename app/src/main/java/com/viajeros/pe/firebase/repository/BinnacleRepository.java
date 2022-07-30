@@ -18,12 +18,21 @@ public class BinnacleRepository extends FirebaseRepository<Binnacle> {
 
     public void saveWithExistentId(Binnacle binnacle , String id){
         this.collectionReference.document(id).set(binnacle);
+
+    }
+
+    public void removeWithExistentId(String id){
+        this.collectionReference.document(id).delete();
+
     }
 
     public MultipleDocumentReferenceLiveData<Binnacle, Query> finByUser(String uid) {
 
-        return new MultipleDocumentReferenceLiveData<>(collectionReference.whereEqualTo("userId", uid), entityClass);
+        return new MultipleDocumentReferenceLiveData<>(collectionReference.whereEqualTo("userId", uid).orderBy("name"), entityClass);
+
     }
+
+
 
 
     private BinnacleRepository() {

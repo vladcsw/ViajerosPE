@@ -178,7 +178,6 @@ public class AdaptadorTodo extends RecyclerView.Adapter<AdaptadorTodo.AdaptadorT
             super(itemView);
             txt1 = itemView.findViewById(R.id.textView11);
             check = itemView.findViewById(R.id.checkBox);
-
             itemView.setOnClickListener(this);
         }
 

@@ -48,6 +48,10 @@ public class HomeSelectViewModel extends ViewModel {
         binnacleRepository.saveWithExistentId(binnacle, id);
     }
 
+    public void removeWithIdGenerated(String id){
+        binnacleRepository.removeWithExistentId(id);
+    }
+
     // Save a document in FireStore
     public void save(Binnacle binnacle){
         binnacleRepository.save(binnacle);

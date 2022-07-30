@@ -41,11 +41,19 @@ public class HomeViewModel extends ViewModel {
         return allLiveDataBinnacle;
     }
 
+
     public DocumentReferenceFirebaseLiveData<ToDoList> getLiveDataToDo(String idBinnacle){
         if (allLiveDataToDoList == null) {
             allLiveDataToDoList = toDoListRepository.findById(idBinnacle);
         }
         return allLiveDataToDoList;
+    }
+
+
+
+    // Save a document in FireStore with a generated Id
+    public void saveWithIdGenerated(Binnacle binnacle , String id){
+        binnacleRepository.saveWithExistentId(binnacle, id);
     }
 
 

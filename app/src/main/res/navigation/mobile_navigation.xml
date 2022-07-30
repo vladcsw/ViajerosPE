@@ -58,4 +58,11 @@
         android:label="ToDo"
         tools:layout="@layout/fragment_add_to_do" />
 
+
+    <fragment
+        android:id="@+id/navigation_addbinnacle"
+        android:name="com.viajeros.pe.ui.home.AddBinnacleFragment"
+        android:label="Bitácora"
+        tools:layout="@layout/fragment_add_binnacle" />
+
 </navigation>

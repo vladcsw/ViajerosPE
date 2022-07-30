@@ -12,6 +12,7 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.firestore.Source;
 import com.viajeros.pe.firebase.livedata.MultipleDocumentReferenceLiveData;
+import com.viajeros.pe.firebase.model.Binnacle;
 import com.viajeros.pe.firebase.model.ToDoList;
 
 import org.w3c.dom.Entity;
@@ -34,6 +35,10 @@ public class ToDoListRepository extends FirebaseRepository<ToDoList> {
     public MultipleDocumentReferenceLiveData<ToDoList, Query> findByBinnacle(String bid) {
         return new MultipleDocumentReferenceLiveData<>(collectionReference.whereEqualTo("binnacleId", bid), entityClass);
 
+
+    }
+    public void saveWithExistentId(ToDoList ToDo , String id){
+        this.collectionReference.document(id).set(ToDo);
 
     }
     private ToDoListRepository() {

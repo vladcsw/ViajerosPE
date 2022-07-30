@@ -20,6 +20,7 @@ import androidx.annotation.RequiresApi;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -59,7 +60,7 @@ public class HomeFragment extends Fragment implements AdaptadorViajes.ItemClickL
         //
         // data to populate the RecyclerView with
         binnacleNames = new ArrayList<>();
-        binnacleNames.add("");
+
 
         /*animalNames.add("Horse");
         animalNames.add("Cow");
@@ -86,6 +87,7 @@ public class HomeFragment extends Fragment implements AdaptadorViajes.ItemClickL
         homeViewModel.getAllLiveData().observe(this.getViewLifecycleOwner(), data -> {
             data.forEach(touristPlace -> {
                 Log.e("TAG", "LUGARES DE UNA BITACORA: " + touristPlace.getName());
+                Log.e("TAG2", "CHECKS: " + touristPlace.getState());
             });
         });
 
@@ -93,15 +95,21 @@ public class HomeFragment extends Fragment implements AdaptadorViajes.ItemClickL
         binnacleIdGenerated = utils.getDocumentIdGenerated("Binnacle");
         Log.e("TAG", binnacleIdGenerated); // Print generated id
 
-        Log.e("TAG", savePlace.toString());
-        binnacle = new Binnacle(uid, savePlace); // Object Binnacle to save
+
+        binnacle = new Binnacle(uid, savePlace, "name"); // Object Binnacle to save
         binnacle.setDocumentId(binnacleIdGenerated);
         homeSelectViewModel = new HomeSelectViewModel(); // Calls view model Binnacle
+
         AtomicInteger h = new AtomicInteger();
         ArrayList<String> a = new ArrayList<>();
         a.add("");
-        HomeSelectViewModel homeSelectViewModel2 = new HomeSelectViewModel();
-        Log.e("UID",uid);// Calls view model Binnacle
+        binnacleNames.clear();
+        binnacleNames.add("");
+        adapter = new AdaptadorViajes(view.getContext(), binnacleNames);
+        adapter.setClickListener(this::onItemClick, a);
+        recyclerView.setAdapter(adapter);
+        HomeSelectViewModel homeSelectViewModel2 = new HomeSelectViewModel(); // Calls view model Binnacle
+
         homeSelectViewModel2.getAllByUser(uid).observe(this.getViewLifecycleOwner(), data -> {
             binnacleNames.clear();
             binnacleDocuments.clear();
@@ -109,16 +117,20 @@ public class HomeFragment extends Fragment implements AdaptadorViajes.ItemClickL
             binnacleDocuments.add("");
             h.set(0);
             data.forEach(binaclet ->{
-                Log.e("TAG", "test");
+
+
+                Log.e("usuarios", "test");
                 h.getAndIncrement();
-                Log.e("TAG",binaclet.getUserId());
-                binnacleNames.add("Viaje"+h);
+                Log.e("testBina2",binaclet.getUserId());
+                binnacleNames.add(binaclet.getName());
+
                 binnacleDocuments.add(binaclet.getDocumentId());
                 a.add(binaclet.getDocumentId());
 
             });
             adapter = new AdaptadorViajes(view.getContext(), binnacleNames);
             adapter.setClickListener(this::onItemClick, a);
+            new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(recyclerView);
             recyclerView.setAdapter(adapter);
 
         });
@@ -204,7 +216,7 @@ public class HomeFragment extends Fragment implements AdaptadorViajes.ItemClickL
         Log.e("usuarios2", "test");
         if(position > 0){
             //Toast.makeText(view.getContext(), "You clicked " + adapter.getItem(position) +adapter.getCode().get(position) +  " on row number " + position, Toast.LENGTH_SHORT).show();
-            Toast.makeText(view.getContext(), "Mi nuevo viaje", Toast.LENGTH_LONG).show();
+
             Bundle bundle = new Bundle();
             bundle.putString("uid", uid);
             bundle.putString("bid", binnacleDocuments.get(position));
@@ -221,7 +233,11 @@ public class HomeFragment extends Fragment implements AdaptadorViajes.ItemClickL
             toDoViewModel.save(toDoList); // Save ToDoList in FireStore*/
             /*Toast.makeText(view.getContext(), "Mi nuevo viaje", Toast.LENGTH_LONG).show();
             Navigation.findNavController(view).navigate(R.id.navigation_homeSelect);*/
-            Log.e("testx",savePlace.toString());
+
+            Navigation.findNavController(view).navigate(R.id.navigation_addbinnacle);
+
+            /* AddBinnacleFragment onClick*/
+            /*Log.e("testx",savePlace.toString());
             homeSelectViewModel.saveWithIdGenerated(binnacle, binnacleIdGenerated); // Save binnacle in FireStore
 
             Bundle bundle = new Bundle();
@@ -233,9 +249,47 @@ public class HomeFragment extends Fragment implements AdaptadorViajes.ItemClickL
             ToDoList toDoList = new ToDoList(uid, binnacleIdGenerated, true, itemList);
             ToDoViewModel todo = new ToDoViewModel();
             todo.save(toDoList);
-            Navigation.findNavController(view).navigate(R.id.navigation_homeSelect,bundle);
+            Navigation.findNavController(view).navigate(R.id.navigation_homeSelect,bundle);*/
 
         }
     }
+
+    ItemTouchHelper.SimpleCallback itemTouchHelperCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT) {
+        @Override
+        public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+            return false;
+        }
+
+        @Override
+        public int getDragDirs(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder) {
+            return super.getDragDirs(recyclerView, viewHolder);
+        }
+
+        @Override
+        public int getSwipeDirs(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder) {
+            if (viewHolder.getAdapterPosition() == 0) return 0;
+            return super.getSwipeDirs(recyclerView, viewHolder);
+        }
+
+        @Override
+        public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+            HomeSelectViewModel homeViewModel = new HomeSelectViewModel();
+            homeViewModel.removeWithIdGenerated(binnacleDocuments.get(viewHolder.getAdapterPosition()));
+
+
+           /* final int[] i = {1};
+            homeViewModel.getLiveDataBinnacle(bid).observe((LifecycleOwner) view.getContext(), data -> {
+
+                if (i[0] == 1){
+                    i[0]++;
+                    data.getPlaces().remove(viewHolder.getAdapterPosition());
+
+                    homeViewModel.saveWithIdGenerated(data,bid);
+
+                }
+
+            });*/
+        }
+    };
 
 }
